@@ -1,0 +1,50 @@
+n01601694 Dipper
+n01669191 Box Turtle
+n01755581 Diamondback Snake
+n01770393 Scorpion
+n01855672 Goose
+n02018207 Water Hen
+n02058221 Albatross
+n02096177 Cairn Terrier
+n02097130 Giant Schnauzer
+n02099267 Flat-Coated Retriever
+n02100877 Irish Setter
+n02104365 Schipperke
+n02106030 Collie
+n02114855 Coyote
+n02125311 Mountain Lion
+n02133161 Black Bear
+n02484975 Guenon
+n02489166 Proboscis Monkey
+n02747177 Trash Bin
+n02906734 Broom
+n03124170 Cowboy Hat
+n03272010 Electric Guitar
+n03337140 File Cabinet
+n03483316 Hair Dryer
+n03498962 Hatchet
+n03710721 Maillot
+n03717622 Manhole Cover
+n03733281 Maze
+n03759954 Microphone
+n03775071 Mitten
+n03814639 Neck Brace
+n03837869 Obelisk
+n03838899 Oboe
+n03854065 Organ
+n03954731 Woodworking Plane
+n03983396 Soda Bottle
+n04026417 Purse
+n04200800 Shoe Shop
+n04209239 Shower Curtain
+n04311004 Steel Arch Bridge
+n04380533 Table Lamp
+n04428191 Threshing Machine
+n04443257 Tobacco Shop
+n04509417 Unicycle
+n04525305 Vending Machine
+n04554684 Washing Machine
+n04606251 Wreck
+n07583066 Guacamole
+n07711569 Mashed Potato
+n07753592 Banana

@@ -1,0 +1,53 @@
+# setup
+setup: selflabel
+
+# ema
+use_ema: False
+
+# Threshold
+confidence_threshold: 0.99
+
+# Criterion
+criterion: confidence-cross-entropy
+criterion_kwargs:
+   apply_class_balancing: True
+
+# Model
+backbone: resnet18
+num_heads: 1
+
+# Dataset
+train_db_name: cifar-20
+val_db_name: cifar-20
+num_classes: 20
+
+# Transformations
+augmentation_strategy: ours 
+augmentation_kwargs:
+   crop_size: 32
+   normalize:
+      mean: [0.5071, 0.4867, 0.4408]
+      std: [0.2675, 0.2565, 0.2761]
+   num_strong_augs: 4
+   cutout_kwargs:
+     n_holes: 1
+     length: 16
+     random: True
+
+transformation_kwargs:
+   crop_size: 32
+   normalize:
+      mean: [0.5071, 0.4867, 0.4408]
+      std: [0.2675, 0.2565, 0.2761]
+
+# Hyperparameters
+epochs: 200
+optimizer: adam
+optimizer_kwargs:
+   lr: 0.0001
+   weight_decay: 0.0001
+batch_size: 1000
+num_workers: 8
+
+# Scheduler
+scheduler: constant

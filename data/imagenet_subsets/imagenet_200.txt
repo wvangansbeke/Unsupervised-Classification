@@ -1,0 +1,200 @@
+n01443537 goldfish, Carassius auratus
+n01514668 cock
+n01558993 robin, American robin, Turdus migratorius
+n01601694 water ouzel, dipper
+n01669191 box turtle, box tortoise
+n01751748 sea snake
+n01755581 diamondback, diamondback rattlesnake, Crotalus adamanteus
+n01756291 sidewinder, horned rattlesnake, Crotalus cerastes
+n01770081 harvestman, daddy longlegs, Phalangium opilio
+n01770393 scorpion
+n01773797 garden spider, Aranea diademata
+n01775062 wolf spider, hunting spider
+n01806143 peacock
+n01819313 sulphur-crested cockatoo, Kakatoe galerita, Cacatua galerita
+n01855672 goose
+n01871265 tusker
+n01917289 brain coral
+n02002724 black stork, Ciconia nigra
+n02018207 American coot, marsh hen, mud hen, water hen, Fulica americana
+n02028035 redshank, Tringa totanus
+n02033041 dowitcher
+n02037110 oystercatcher, oyster catcher
+n02058221 albatross, mollymawk
+n02087046 toy terrier
+n02088094 Afghan hound, Afghan
+n02088632 bluetick
+n02090622 borzoi, Russian wolfhound
+n02091134 whippet
+n02093256 Staffordshire bullterrier, Staffordshire bull terrier
+n02093754 Border terrier
+n02093859 Kerry blue terrier
+n02094114 Norfolk terrier
+n02096177 cairn, cairn terrier
+n02096294 Australian terrier
+n02097130 giant schnauzer
+n02097298 Scotch terrier, Scottish terrier, Scottie
+n02099267 flat-coated retriever
+n02099849 Chesapeake Bay retriever
+n02100735 English setter
+n02100877 Irish setter, red setter
+n02104365 schipperke
+n02105251 briard
+n02105855 Shetland sheepdog, Shetland sheep dog, Shetland
+n02106030 collie
+n02106166 Border collie
+n02107142 Doberman, Doberman pinscher
+n02107683 Bernese mountain dog
+n02110185 Siberian husky
+n02110341 dalmatian, coach dog, carriage dog
+n02111889 Samoyed, Samoyede
+n02113799 standard poodle
+n02114855 coyote, prairie wolf, brush wolf, Canis latrans
+n02120079 Arctic fox, white fox, Alopex lagopus
+n02120505 grey fox, gray fox, Urocyon cinereoargenteus
+n02123597 Siamese cat, Siamese
+n02125311 cougar, puma, catamount, mountain lion, painter, panther, Felis concolor
+n02128385 leopard, Panthera pardus
+n02129165 lion, king of beasts, Panthera leo
+n02130308 cheetah, chetah, Acinonyx jubatus
+n02133161 American black bear, black bear, Ursus americanus, Euarctos americanus
+n02219486 ant, emmet, pismire
+n02229544 cricket
+n02277742 ringlet, ringlet butterfly
+n02325366 wood rabbit, cottontail, cottontail rabbit
+n02342885 hamster
+n02364673 guinea pig, Cavia cobaya
+n02437616 llama
+n02454379 armadillo
+n02484975 guenon, guenon monkey
+n02488702 colobus, colobus monkey
+n02489166 proboscis monkey, Nasalis larvatus
+n02492660 howler monkey, howler
+n02510455 giant panda, panda, panda bear, coon bear, Ailuropoda melanoleuca
+n02536864 coho, cohoe, coho salmon, blue jack, silver salmon, Oncorhynchus kisutch
+n02643566 lionfish
+n02655020 puffer, pufferfish, blowfish, globefish
+n02666196 abacus
+n02708093 analog clock
+n02730930 apron
+n02747177 ashcan, trash can, garbage can, wastebin, ash bin, ash-bin, ashbin, dustbin, trash barrel, trash bin
+n02769748 backpack, back pack, knapsack, packsack, rucksack, haversack
+n02783161 ballpoint, ballpoint pen, ballpen, Biro
+n02791124 barber chair
+n02794156 barometer
+n02804414 bassinet
+n02804610 bassoon
+n02835271 bicycle-built-for-two, tandem bicycle, tandem
+n02837789 bikini, two-piece
+n02865351 bolo tie, bolo, bola tie, bola
+n02877765 bottlecap
+n02906734 broom
+n02909870 bucket, pail
+n02910353 buckle
+n02916936 bulletproof vest
+n02977058 cash machine, cash dispenser, automated teller machine, automatic teller machine, automated teller, automatic teller, ATM
+n02978881 cassette
+n02981792 catamaran
+n02992211 cello, violoncello
+n03063599 coffee mug
+n03085013 computer keyboard, keypad
+n03124170 cowboy hat, ten-gallon hat
+n03127747 crash helmet
+n03134739 croquet ball
+n03160309 dam, dike, dyke
+n03208938 disk brake, disc brake
+n03255030 dumbbell
+n03272010 electric guitar
+n03291819 envelope
+n03337140 file, file cabinet, filing cabinet
+n03347037 fire screen, fireguard
+n03355925 flagpole, flagstaff
+n03445924 golfcart, golf cart
+n03447447 gondola
+n03447721 gong, tam-tam
+n03450230 gown
+n03457902 greenhouse, nursery, glasshouse
+n03483316 hand blower, blow dryer, blow drier, hair dryer, hair drier
+n03498962 hatchet
+n03530642 honeycomb
+n03599486 jinrikisha, ricksha, rickshaw
+n03617480 kimono
+n03623198 knee pad
+n03627232 knot
+n03649909 lawn mower, mower
+n03710721 maillot, tank suit
+n03717622 manhole cover
+n03733281 maze, labyrinth
+n03759954 microphone, mike
+n03763968 military uniform
+n03764736 milk can
+n03775071 mitten
+n03782006 monitor
+n03814639 neck brace
+n03837869 obelisk
+n03838899 oboe, hautboy, hautbois
+n03841143 odometer, hodometer, mileometer, milometer
+n03854065 organ, pipe organ
+n03868863 oxygen mask
+n03874293 paddlewheel, paddle wheel
+n03877845 palace
+n03929855 pickelhaube
+n03930313 picket fence, paling
+n03954731 plane, carpenter's plane, woodworking plane
+n03956157 planetarium
+n03976467 Polaroid camera, Polaroid Land camera
+n03976657 pole
+n03983396 pop bottle, soda bottle
+n04004767 printer
+n04026417 purse
+n04065272 recreational vehicle, RV, R.V.
+n04146614 school bus
+n04200800 shoe shop, shoe-shop, shoe store
+n04209239 shower curtain
+n04235860 sleeping bag
+n04238763 slide rule, slipstick
+n04252077 snowmobile
+n04263257 soup bowl
+n04264628 space bar
+n04265275 space heater
+n04266014 space shuttle
+n04275548 spider web, spider's web
+n04311004 steel arch bridge
+n04325704 stole
+n04330267 stove
+n04332243 strainer
+n04335435 streetcar, tram, tramcar, trolley, trolley car
+n04336792 stretcher
+n04346328 stupa, tope
+n04350905 suit, suit of clothes
+n04366367 suspension bridge
+n04367480 swab, swob, mop
+n04380533 table lamp
+n04392985 tape player
+n04428191 thresher, thrasher, threshing machine
+n04443257 tobacco shop, tobacconist shop, tobacconist
+n04458633 totem pole
+n04479046 trench coat
+n04483307 trimaran
+n04509417 unicycle, monocycle
+n04515003 upright, upright piano
+n04525305 vending machine
+n04532106 vestment
+n04554684 washer, automatic washer, washing machine
+n04579145 whiskey jug
+n04591157 Windsor tie
+n04592741 wing
+n04604644 worm fence, snake fence, snake-rail fence, Virginia fence
+n04606251 wreck
+n07583066 guacamole
+n07584110 consomme
+n07613480 trifle
+n07615774 ice lolly, lolly, lollipop, popsicle
+n07684084 French loaf
+n07693725 bagel, beigel
+n07711569 mashed potato
+n07714990 broccoli
+n07749582 lemon
+n07753592 banana
+n09288635 geyser
+n11879895 rapeseed

@@ -1,0 +1,25 @@
+# Setup
+setup: moco # MoCo is used here
+
+# Model
+backbone: resnet50
+model_kwargs:
+   head: mlp
+   features_dim: 128
+
+# Dataset
+train_db_name: imagenet_200
+val_db_name: imagenet_200
+num_classes: 200
+temperature: 0.07
+
+# Batch size and workers
+batch_size: 256 
+num_workers: 8
+
+# Transformations
+transformation_kwargs:
+   crop_size: 224
+   normalize:
+      mean: [0.485, 0.456, 0.406]
+      std: [0.229, 0.224, 0.225]

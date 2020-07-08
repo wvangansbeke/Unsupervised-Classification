@@ -1,0 +1,57 @@
+# Setup
+setup: simclr
+
+# Model
+backbone: resnet18
+model_kwargs:
+   head: mlp
+   features_dim: 128
+
+# Dataset
+train_db_name: cifar-10
+val_db_name: cifar-10
+num_classes: 10
+
+# Loss
+criterion: simclr
+criterion_kwargs:
+   temperature: 0.1 
+
+# Hyperparameters
+epochs: 500
+optimizer: sgd
+optimizer_kwargs:
+   nesterov: False
+   weight_decay: 0.0001 
+   momentum: 0.9
+   lr: 0.4
+scheduler: cosine
+scheduler_kwargs:
+   lr_decay_rate: 0.1
+batch_size: 512 
+num_workers: 8
+
+# Transformations
+augmentation_strategy: simclr 
+augmentation_kwargs:
+   random_resized_crop:
+      size: 32
+      scale: [0.2, 1.0]
+   color_jitter_random_apply:
+      p: 0.8
+   color_jitter:
+      brightness: 0.4
+      contrast: 0.4
+      saturation: 0.4
+      hue: 0.1
+   random_grayscale: 
+      p: 0.2
+   normalize:
+      mean: [0.4914, 0.4822, 0.4465]
+      std: [0.2023, 0.1994, 0.2010]
+
+transformation_kwargs:
+   crop_size: 32
+   normalize:
+      mean: [0.4914, 0.4822, 0.4465]
+      std: [0.2023, 0.1994, 0.2010]

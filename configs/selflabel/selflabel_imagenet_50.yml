@@ -1,0 +1,56 @@
+# setup
+setup: selflabel
+
+# Threshold
+confidence_threshold: 0.99
+
+# EMA
+use_ema: True
+ema_alpha: 0.999
+
+# Loss
+criterion: confidence-cross-entropy
+criterion_kwargs:
+   apply_class_balancing: False
+
+# Model
+backbone: resnet50
+num_heads: 1
+
+# Dataset
+train_db_name: imagenet_50
+val_db_name: imagenet_50
+num_classes: 50
+
+# Transformations
+augmentation_strategy: ours 
+augmentation_kwargs:
+   crop_size: 224
+   normalize:
+      mean: [0.485, 0.456, 0.406]
+      std: [0.229, 0.224, 0.225]
+   num_strong_augs: 4
+   cutout_kwargs:
+     n_holes: 1
+     length: 75
+     random: True
+
+transformation_kwargs:
+   crop_size: 224
+   normalize:
+      mean: [0.485, 0.456, 0.406]
+      std: [0.229, 0.224, 0.225]
+
+# Hyperparameters
+optimizer: sgd
+optimizer_kwargs:
+   lr: 0.03
+   weight_decay: 0.0
+   nesterov: False
+   momentum: 0.9
+epochs: 25
+batch_size: 512
+num_workers: 16
+
+# Scheduler
+scheduler: constant 

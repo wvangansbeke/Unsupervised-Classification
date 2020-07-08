@@ -1,0 +1,100 @@
+n01558993 robin, American robin, Turdus migratorius
+n01601694 water ouzel, dipper
+n01669191 box turtle, box tortoise
+n01751748 sea snake
+n01755581 diamondback, diamondback rattlesnake, Crotalus adamanteus
+n01756291 sidewinder, horned rattlesnake, Crotalus cerastes
+n01770393 scorpion
+n01855672 goose
+n01871265 tusker
+n02018207 American coot, marsh hen, mud hen, water hen, Fulica americana
+n02037110 oystercatcher, oyster catcher
+n02058221 albatross, mollymawk
+n02087046 toy terrier
+n02088632 bluetick
+n02093256 Staffordshire bullterrier, Staffordshire bull terrier
+n02093754 Border terrier
+n02094114 Norfolk terrier
+n02096177 cairn, cairn terrier
+n02097130 giant schnauzer
+n02097298 Scotch terrier, Scottish terrier, Scottie
+n02099267 flat-coated retriever
+n02100877 Irish setter, red setter
+n02104365 schipperke
+n02105855 Shetland sheepdog, Shetland sheep dog, Shetland
+n02106030 collie
+n02106166 Border collie
+n02107142 Doberman, Doberman pinscher
+n02110341 dalmatian, coach dog, carriage dog
+n02114855 coyote, prairie wolf, brush wolf, Canis latrans
+n02120079 Arctic fox, white fox, Alopex lagopus
+n02120505 grey fox, gray fox, Urocyon cinereoargenteus
+n02125311 cougar, puma, catamount, mountain lion, painter, panther, Felis concolor
+n02128385 leopard, Panthera pardus
+n02133161 American black bear, black bear, Ursus americanus, Euarctos americanus
+n02277742 ringlet, ringlet butterfly
+n02325366 wood rabbit, cottontail, cottontail rabbit
+n02364673 guinea pig, Cavia cobaya
+n02484975 guenon, guenon monkey
+n02489166 proboscis monkey, Nasalis larvatus
+n02708093 analog clock
+n02747177 ashcan, trash can, garbage can, wastebin, ash bin, ash-bin, ashbin, dustbin, trash barrel, trash bin
+n02835271 bicycle-built-for-two, tandem bicycle, tandem
+n02906734 broom
+n02909870 bucket, pail
+n03085013 computer keyboard, keypad
+n03124170 cowboy hat, ten-gallon hat
+n03127747 crash helmet
+n03160309 dam, dike, dyke
+n03255030 dumbbell
+n03272010 electric guitar
+n03291819 envelope
+n03337140 file, file cabinet, filing cabinet
+n03450230 gown
+n03483316 hand blower, blow dryer, blow drier, hair dryer, hair drier
+n03498962 hatchet
+n03530642 honeycomb
+n03623198 knee pad
+n03649909 lawn mower, mower
+n03710721 maillot, tank suit
+n03717622 manhole cover
+n03733281 maze, labyrinth
+n03759954 microphone, mike
+n03775071 mitten
+n03814639 neck brace
+n03837869 obelisk
+n03838899 oboe, hautboy, hautbois
+n03854065 organ, pipe organ
+n03929855 pickelhaube
+n03930313 picket fence, paling
+n03954731 plane, carpenter's plane, woodworking plane
+n03956157 planetarium
+n03983396 pop bottle, soda bottle
+n04004767 printer
+n04026417 purse
+n04065272 recreational vehicle, RV, R.V.
+n04200800 shoe shop, shoe-shop, shoe store
+n04209239 shower curtain
+n04235860 sleeping bag
+n04311004 steel arch bridge
+n04325704 stole
+n04336792 stretcher
+n04346328 stupa, tope
+n04380533 table lamp
+n04428191 thresher, thrasher, threshing machine
+n04443257 tobacco shop, tobacconist shop, tobacconist
+n04458633 totem pole
+n04483307 trimaran
+n04509417 unicycle, monocycle
+n04515003 upright, upright piano
+n04525305 vending machine
+n04554684 washer, automatic washer, washing machine
+n04591157 Windsor tie
+n04592741 wing
+n04606251 wreck
+n07583066 guacamole
+n07613480 trifle
+n07693725 bagel, beigel
+n07711569 mashed potato
+n07753592 banana
+n11879895 rapeseed

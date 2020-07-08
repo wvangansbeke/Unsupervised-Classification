@@ -1,0 +1,59 @@
+# setup
+setup: scan
+
+# Loss
+criterion: scan
+criterion_kwargs:
+   entropy_weight: 5.0
+
+# Model
+backbone: resnet50
+
+# Weight update
+update_cluster_head_only: True # Train only linear layer during SCAN
+num_heads: 10 # Use multiple heads
+
+# Dataset
+train_db_name: imagenet_50
+val_db_name: imagenet_50
+num_classes: 50
+num_neighbors: 50 
+
+# Transformations
+augmentation_strategy: simclr 
+augmentation_kwargs:
+   random_resized_crop:
+      size: 224
+      scale: [0.2, 1.0]
+   color_jitter_random_apply:
+      p: 0.8
+   color_jitter:
+      brightness: 0.4
+      contrast: 0.4
+      saturation: 0.4
+      hue: 0.1
+   random_grayscale: 
+      p: 0.2
+   normalize:
+      mean: [0.485, 0.456, 0.406]
+      std: [0.229, 0.224, 0.225]
+
+transformation_kwargs:
+   crop_size: 224
+   normalize:
+      mean: [0.485, 0.456, 0.406]
+      std: [0.229, 0.224, 0.225]
+
+# Hyperparameters
+optimizer: sgd
+optimizer_kwargs:
+   lr: 5.0
+   weight_decay: 0.0000
+   nesterov: False
+   momentum: 0.9
+epochs: 100
+batch_size: 512
+num_workers: 12
+
+# Scheduler
+scheduler: constant
