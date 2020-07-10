@@ -108,8 +108,7 @@ def main():
         print('Checkpoint ...')
         torch.save({'optimizer': optimizer.state_dict(), 'model': model.state_dict(), 
                     'epoch': epoch + 1}, p['selflabel_checkpoint'])
-        #torch.save(model.module.state_dict(), p['selflabel_model'])
-        torch.save(model.module.state_dict(), os.path.join(p['selflabel_dir'], 'model_%d.pth.tar' %(epoch)))
+        torch.save(model.module.state_dict(), p['selflabel_model'])
     
     # Evaluate and save the final model
     print(colored('Evaluate model at the end', 'blue'))
