@@ -52,8 +52,8 @@ python selflabel.py --config_env configs/your_env.yml --config_exp configs/selfl
 ```
 ### Remarks
 The provided hyperparameters are identical for CIFAR10, CIFAR100-20 and STL10. However, fine-tuning the hyperparameters can further improve the results. We list the most important hyperparameters of our method below:
-- Entropy weight: Can be adapted when the of clusters changed. In general, try to avoid imbalanced clusters during training. 
-- Confidence threshold: When every cluster contains a sufficiently large amount of confident samples, it can be beneficial to increase the threshold. This generally helps to decrease the noise.
+- Entropy weight: Can be adapted when the number of clusters changes. In general, try to avoid imbalanced clusters during training. 
+- Confidence threshold: When every cluster contains a sufficiently large amount of confident samples, it can be beneficial to increase the threshold. This generally helps to decrease the noise. The ablation can be found in the paper. 
 - Number of neighbors in SCAN: The dependency on this hyperparameter is rather small as shown in the paper. 
 
 ## Model Zoo
