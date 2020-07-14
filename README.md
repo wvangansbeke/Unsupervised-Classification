@@ -7,7 +7,7 @@ This repo contains the Pytorch implementation of our paper:
 >
 > [Wouter Van Gansbeke](https://twitter.com/WGansbeke), [Simon Vandenhende](https://twitter.com/svandenh1), [Stamatios Georgoulis](https://twitter.com/stam_g), Marc Proesmans and Luc Van Gool.
 
-__Accepted at ECCV 2020. Watch the explanation of our paper by Yannick Kilcher on [YouTube](https://www.youtube.com/watch?v=hQEnzdLkPj4).__
+__Accepted at ECCV 2020. Watch the explanation of our paper by Yannic Kilcher on [YouTube](https://www.youtube.com/watch?v=hQEnzdLkPj4).__
 <p align="center">
     <img src="images/teaser.jpg" />
 
