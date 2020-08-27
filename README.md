@@ -91,7 +91,8 @@ We also train SCAN on ImageNet for 1000 clusters. We use 10 clusterheads and fin
 
  Method          | ACC                   |  NMI            |  AMI | ARI   |  Download link | 
 |----------------|---------------------- |-----------------|------|-------|----------------| 
-| SCAN           | 39.9                  | 72.0            | 51.2 |  27.5 |[Download](https://drive.google.com/file/d/1PcF8ydoWoqhxARGuW55KcNarfZyJwcza/view?usp=sharing) |
+| SCAN (ResNet50)           | 39.9                  | 72.0            | 51.2 |  27.5 |[Download](https://drive.google.com/file/d/1PcF8ydoWoqhxARGuW55KcNarfZyJwcza/view?usp=sharing) |
+ 
 
 
 ### Evaluation
