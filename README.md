@@ -86,6 +86,13 @@ We provide the following pretrained models after training with the __SCAN-loss__
 | ImageNet-200     |  SCAN-loss        | 56.3                  | 75.7            | 44.1      |[Download](https://drive.google.com/file/d/1oO-OCW2MiXmNC4sD6pkw8PurYScX7oVW/view?usp=sharing)  |
 |                  |  Self-labeling    | 58.1                  | 77.2            | 47.0      |[Download](https://drive.google.com/file/d/11dfobUwy6ragh7PoqFagoEns5-teWalm/view?usp=sharing)  |
 
+### Result ImageNet
+We also train SCAN on ImageNet for 1000 clusters. We use 10 clusterheads and finally take the head with the lowest loss. The accuracy (ACC), normalized mutual information (NMI), adjusted mutual information (AMI) and adjusted rand index (ARI) are computed:
+
+ Method          | ACC                   |  NMI            |  AMI | ARI   |  Download link | 
+|----------------|---------------------- |-----------------|------|-------|----------------| 
+| SCAN           | 39.9                  | 72.0            | 51.2 |  27.5 |[Download](https://drive.google.com/file/d/1PcF8ydoWoqhxARGuW55KcNarfZyJwcza/view?usp=sharing) |
+
 
 ### Evaluation
 Pretrained models from the model zoo can be evaluated using the `eval.py` script. For example, the model on cifar-10 can be evaluated as follows:
@@ -97,12 +104,16 @@ Visualizing the prototype images is easily done by setting the `--visualize_prot
     <img src="images/prototypes_cifar10.jpg" width="600" />
 </p>
 
+Similarly, you might want to have a look at the clusters found on ImageNet (as shown at the top). First download the model (link in table above) and then execute the following command:
+```shell
+python eval.py --config_exp configs/scan/imagenet_eval.yml --model $MODEL_PATH_IMAGENET 
+```
 
 ## Citation
 
 If you find this repo useful for your research, please consider citing our paper:
 
-```
+```bibtex
 @inproceedings{wvangansbeke2020learning,
   title={SCAN: Learning to Classify Images without Labels},
   author={Van Gansbeke, Wouter and Vandenhende, Simon and Georgoulis, Stamatios and Proesmans, Marc and Van Gool, Luc},
