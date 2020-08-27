@@ -115,7 +115,7 @@ python eval.py --config_exp configs/scan/imagenet_eval.yml --model $MODEL_PATH_I
 If you find this repo useful for your research, please consider citing our paper:
 
 ```bibtex
-@inproceedings{wvangansbeke2020learning,
+@inproceedings{wvangansbeke2020scan,
   title={SCAN: Learning to Classify Images without Labels},
   author={Van Gansbeke, Wouter and Vandenhende, Simon and Georgoulis, Stamatios and Proesmans, Marc and Van Gool, Luc},
   booktitle={European Conference on Computer Vision (ECCV)},
