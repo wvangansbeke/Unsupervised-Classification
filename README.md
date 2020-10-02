@@ -1,23 +1,32 @@
 # SCAN: Learning to Classify Images without Labels
 
 
-
 This repo contains the Pytorch implementation of our paper:
 > [**SCAN: Learning to Classify Images without Labels**](https://arxiv.org/pdf/2005.12320.pdf)
 >
 > [Wouter Van Gansbeke](https://twitter.com/WGansbeke), [Simon Vandenhende](https://twitter.com/svandenh1), [Stamatios Georgoulis](https://twitter.com/stam_g), Marc Proesmans and Luc Van Gool.
 
 __Accepted at ECCV 2020. Watch the explanation of our paper by Yannic Kilcher on [YouTube](https://www.youtube.com/watch?v=hQEnzdLkPj4).__
+🆕 __Tutorial has been added, checkout [TUTORIAL.md](https://github.com/wvangansbeke/Unsupervised-Classification/blob/master/TUTORIAL.md). A detailed guide for semantic clustering with SCAN__
 <p align="center">
     <img src="images/teaser.jpg" />
 <p align="center">
     <img src="images/pipeline.png" />
+
 
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/learning-to-classify-images-without-labels/unsupervised-image-classification-on-imagenet)](https://paperswithcode.com/sota/unsupervised-image-classification-on-imagenet?p=learning-to-classify-images-without-labels)
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/learning-to-classify-images-without-labels/unsupervised-image-classification-on-cifar-10)](https://paperswithcode.com/sota/unsupervised-image-classification-on-cifar-10?p=learning-to-classify-images-without-labels)
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/learning-to-classify-images-without-labels/unsupervised-image-classification-on-stl-10)](https://paperswithcode.com/sota/unsupervised-image-classification-on-stl-10?p=learning-to-classify-images-without-labels)
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/learning-to-classify-images-without-labels/unsupervised-image-classification-on-cifar-20)](https://paperswithcode.com/sota/unsupervised-image-classification-on-cifar-20?p=learning-to-classify-images-without-labels)
 </p>
+
+## Contents
+1. [Installation](#installation)
+0. [Training](#training)
+0. [Model Zoo](#model-zoo)
+0. [Tutorial](#tutorial)
+0. [Citation](#citation)
+
 
 ## Installation
 The code runs with recent Pytorch versions, e.g. 1.4. 
@@ -110,7 +119,12 @@ Similarly, you might want to have a look at the clusters found on ImageNet (as s
 python eval.py --config_exp configs/scan/imagenet_eval.yml --model $MODEL_PATH_IMAGENET 
 ```
 
+## Tutorial
+
+If you want to see another (more detailed) example for STL-10, checkout [TUTORIAL.md](https://github.com/wvangansbeke/Unsupervised-Classification/blob/master/TUTORIAL.md). It provides a detailed guide and includes visualizations and log files with the training progress.
+
 ## Citation
+
 
 If you find this repo useful for your research, please consider citing our paper:
 
