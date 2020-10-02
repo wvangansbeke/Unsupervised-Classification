@@ -7,8 +7,6 @@ This repo contains the Pytorch implementation of our paper:
 > [Wouter Van Gansbeke](https://twitter.com/WGansbeke), [Simon Vandenhende](https://twitter.com/svandenh1), [Stamatios Georgoulis](https://twitter.com/stam_g), Marc Proesmans and Luc Van Gool.
 
 __Accepted at ECCV 2020. Watch the explanation of our paper by Yannic Kilcher on [YouTube](https://www.youtube.com/watch?v=hQEnzdLkPj4).__
-
-🆕 Tutorial has been added, checkout [TUTORIAL.md](https://github.com/wvangansbeke/Unsupervised-Classification/blob/master/TUTORIAL.md).
 <p align="center">
     <img src="images/teaser.jpg" />
 <p align="center">
@@ -28,7 +26,7 @@ __Accepted at ECCV 2020. Watch the explanation of our paper by Yannic Kilcher on
 0. [Tutorial](#tutorial)
 0. [Citation](#citation)
 
-
+🆕 Tutorial has been added, checkout [TUTORIAL.md](https://github.com/wvangansbeke/Unsupervised-Classification/blob/master/TUTORIAL.md).
 ## Installation
 The code runs with recent Pytorch versions, e.g. 1.4. 
 Assuming [Anaconda](https://docs.anaconda.com/anaconda/install/), the most important packages can be installed as:
