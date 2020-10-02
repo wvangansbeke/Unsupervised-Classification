@@ -53,8 +53,6 @@ python tutorial_nn.py --config_env configs/env.yml --config_exp configs/    # Co
 You should get similar results as:
 ```
 > Restart from checkpoint repository_eccv/stl-10/pretext/checkpoint.pth.tar
-> Fill Memory Bank [0/10]
-> Result of kNN evaluation is 87.17
 > Fill memory bank for mining the nearest neighbors (train) ...
 > Fill Memory Bank [0/10]
 > Mine the nearest neighbors (Top-20)
