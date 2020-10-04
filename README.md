@@ -19,14 +19,29 @@ __Accepted at ECCV 2020 ([Slides](https://wvangansbeke.github.io/wvangansbeke.gi
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/learning-to-classify-images-without-labels/unsupervised-image-classification-on-cifar-20)](https://paperswithcode.com/sota/unsupervised-image-classification-on-cifar-20?p=learning-to-classify-images-without-labels)
 </p>
 
+
+
 ## Contents
-1. [Installation](#installation)
+1. [Problems Prior Work](#problems-prior-work)
+0. [Installation](#installation)
 0. [Training](#training)
 0. [Model Zoo](#model-zoo)
 0. [Tutorial](#tutorial)
 0. [Citation](#citation)
 
-🆕 Tutorial has been added, checkout [TUTORIAL.md](https://github.com/wvangansbeke/Unsupervised-Classification/blob/master/TUTORIAL.md).
+🆕 Tutorial section has been added, checkout [TUTORIAL.md](https://github.com/wvangansbeke/Unsupervised-Classification/blob/master/TUTORIAL.md).
+
+🆕 Prior work section has been added, checkout [Problems Prior Work](#problems-prior-work).
+
+## Problems Prior Work
+- Trains on test set:
+We would like to point out that most prior work in unsupervised classification use both the train and test set during training. We believe this is bad practice and therefore propose to only train on the training set. The final numbers should be reported on the test set (see table 3 of our paper). This also allows us to directly compare with supervised and semi-supervised methods in the literature. We encourage future work to do the same. So our numbers are expected to be better when we also include the test set for training.
+
+- Reproducibility: 
+We noticed that prior work is very initialization sensitive. So, we don't think reporting a single number is therefore fair. We report our results as the mean and standard deviation over 10 runs. 
+
+Please follow the instructions underneath to perform semantic clustering with SCAN.
+
 ## Installation
 The code runs with recent Pytorch versions, e.g. 1.4. 
 Assuming [Anaconda](https://docs.anaconda.com/anaconda/install/), the most important packages can be installed as:
@@ -117,6 +132,9 @@ Similarly, you might want to have a look at the clusters found on ImageNet (as s
 ```shell
 python eval.py --config_exp configs/scan/imagenet_eval.yml --model $MODEL_PATH_IMAGENET 
 ```
+
+
+
 
 ## Tutorial
 
