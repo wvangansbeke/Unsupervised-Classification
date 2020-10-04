@@ -13,7 +13,7 @@ You can follow this guide to obtain the semantic clusters with SCAN on the STL-1
 ### Repository
 Clone the repository and navigate to the correct folder:
 ```bash
-git clone git@github.com:wvangansbeke/Unsupervised-Classification.git
+git clone https://github.com/wvangansbeke/Unsupervised-Classification.git
 cd  Unsupervised-Classification
 ```
 
@@ -27,7 +27,7 @@ export CUDA_VISIBLE_DEVICES=$gpu_ids
 I will use an environment with Python 3.7, Pytorch 1.6, CUDA 10.2 and CUDNN 7.5.6 for this example.
 
 ### Paths
-Adapt the path in `configs/env.yml` to `repository_eccv/`, since that directory will be used in this tutorial. 
+Adapt the path in `configs/env.yml` to `repository_eccv/`, since this directory will be used in this tutorial. 
 Make the following directories. The models will be saved there, other directories will be made on the fly if necessary.
 ```bash
 mkdir repository_eccv/
@@ -97,7 +97,7 @@ Now, we can visualize the confusion matrix and the prototypes of our model. We d
 ```bash
 python eval.py --config_exp configs/scan/scan_stl10.yml --model repository_eccv/stl-10/scan/model.pth.tar --visualize_prototypes
 ```
-As can be seen from the confusion matrix, the model confuses primarily between cats, dogs and monkeys. Some images are classified near perfection (e.g. ship) without the use of ground truth.
+As can be seen from the confusion matrix, the model confuses primarily between similar classes (e.g. cats, dogs and monkeys). Some images are classified near perfection (e.g. ship) without the use of ground truth.
 <p align="center">
     <img src="images/tutorial/confusion_matrix_stl10.png" width="600" />
 </p>
