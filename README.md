@@ -22,7 +22,8 @@ __Accepted at ECCV 2020 ([Slides](https://wvangansbeke.github.io/wvangansbeke.gi
 
 
 ## Contents
-1. [Problems Prior Work](#problems-prior-work)
+1. [Introduction](#introduction)
+0. [Problems with Prior Work](#problems-with-prior-work)
 0. [Installation](#installation)
 0. [Training](#training)
 0. [Model Zoo](#model-zoo)
@@ -33,8 +34,14 @@ __Accepted at ECCV 2020 ([Slides](https://wvangansbeke.github.io/wvangansbeke.gi
 
 🆕 Prior work section has been added, checkout [Problems Prior Work](#problems-prior-work).
 
-## Problems Prior Work
-- Trains on test set:
+## Introduction
+Can we automatically group images into semantically meaningful clusters when ground-truth annotations are absent? The task of unsupervised image classification remains an important, and open challenge in computer vision. Several recent approaches have tried to tackle this problem in an end-to-end fashion. In this paper, we deviate from recent works, and advocate a two-step approach where feature learning and clustering are decoupled.
+
+We outperform state-of-the-art methods by large margins, in particular +26.6% on CIFAR10, +25.0% on CIFAR100-20 and +21.3% on STL10 in terms of classification accuracy.  Our method is the first to perform well on ImageNet (1000 classes).
+__Check out the benchmarks on the [Papers-with-code](https://paperswithcode.com/paper/learning-to-classify-images-without-labels#results) website for [Image Clustering](https://paperswithcode.com/task/image-clustering) and [Unsupervised Image Classification](https://paperswithcode.com/task/unsupervised-image-classification).__
+
+## Problems with Prior Work
+- Train set includes test set:
 We would like to point out that most prior work in unsupervised classification use both the train and test set during training. We believe this is bad practice and therefore propose to only train on the training set. The final numbers should be reported on the test set (see table 3 of our paper). This also allows us to directly compare with supervised and semi-supervised methods in the literature. We encourage future work to do the same. So our numbers are expected to be better when we also include the test set for training.
 
 - Reproducibility: 
