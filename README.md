@@ -7,6 +7,8 @@ This repo contains the Pytorch implementation of our paper:
 > [Wouter Van Gansbeke](https://twitter.com/WGansbeke), [Simon Vandenhende](https://twitter.com/svandenh1), [Stamatios Georgoulis](https://twitter.com/stam_g), Marc Proesmans and Luc Van Gool.
 
 __Accepted at ECCV 2020 ([Slides](https://wvangansbeke.github.io/wvangansbeke.github.io/pdfs/unsupervised_classification.pdf)). Watch the explanation of our paper by Yannic Kilcher on [YouTube](https://www.youtube.com/watch?v=hQEnzdLkPj4).__
+
+🆕 __Results: Check out the benchmarks on the [Papers-with-code](https://paperswithcode.com/paper/learning-to-classify-images-without-labels) website for [Image Clustering](https://paperswithcode.com/task/image-clustering) or [Unsupervised Image Classification](https://paperswithcode.com/task/unsupervised-image-classification).__
 <p align="center">
     <img src="images/teaser.jpg" />
 <p align="center">
