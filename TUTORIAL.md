@@ -11,7 +11,7 @@ You can follow this guide to obtain the semantic clusters with SCAN on the STL-1
 
 ## Preparation
 ### Repository
-Clone the repository and navigate to the correct folder:
+Clone the repository and navigate to the directory:
 ```bash
 git clone https://github.com/wvangansbeke/Unsupervised-Classification.git
 cd  Unsupervised-Classification
@@ -43,10 +43,10 @@ Feel free to run this task with the correct config file:
 python simclr.py --config_env configs/env.yml --config_exp configs/pretext/simclr_stl10.yml 
 ```
 
-In order to save time, we provide pretrained models in the README.md on all the datasets discussed in the paper. 
+In order to save time, we provide pretrained models in the README.md for all the datasets discussed in the paper. 
 First, download the pretrained model [here](https://drive.google.com/file/d/1261NDFfXuKR2Dh4RWHYYhcicdcPag9NZ/view?usp=sharing) and save it in your experiments directory. Then, move the downloaded model to the correct location (i.e. `repository_eccv/stl-10/pretext`) and calculate the nearest neighbors. This can be achieved by running the following commands:
 ```bash
-mv simclr_stl-10.pth.tar repository_eccv/stl-10/pretext/checkpoint.pth.tar  # Move model to correct folder
+mv simclr_stl-10.pth.tar repository_eccv/stl-10/pretext/checkpoint.pth.tar  # Move model to correct location
 python tutorial_nn.py --config_env configs/env.yml --config_exp configs/    # Compute neighbors
 ```
 
@@ -97,7 +97,7 @@ Now, we can visualize the confusion matrix and the prototypes of our model. We d
 ```bash
 python eval.py --config_exp configs/scan/scan_stl10.yml --model repository_eccv/stl-10/scan/model.pth.tar --visualize_prototypes
 ```
-As can be seen from the confusion matrix, the model confuses primarily between similar classes (e.g. cats, dogs and monkeys). Some images are classified near perfection (e.g. ship) without the use of ground truth.
+As can be seen from the confusion matrix, the model confuses primarily between visually similar classes (e.g. cats, dogs and monkeys). Some images are classified near perfection (e.g. ship) without the use of ground truth.
 <p align="center">
     <img src="images/tutorial/confusion_matrix_stl10.png" width="600" />
 </p>
