@@ -155,12 +155,13 @@ If you want to see another (more detailed) example for STL-10, checkout [TUTORIA
 If you find this repo useful for your research, please consider citing our paper:
 
 ```bibtex
-@inproceedings{wvangansbeke2020scan,
-  title={SCAN: Learning to Classify Images without Labels},
+@inproceedings{vangansbeke2020scan,
+  title={Scan: Learning to classify images without labels},
   author={Van Gansbeke, Wouter and Vandenhende, Simon and Georgoulis, Stamatios and Proesmans, Marc and Van Gool, Luc},
-  booktitle={European Conference on Computer Vision (ECCV)},
+  booktitle={Proceedings of the European Conference on Computer Vision},
   year={2020}
 }
+
 ```
 For any enquiries, please contact the main authors.
 
