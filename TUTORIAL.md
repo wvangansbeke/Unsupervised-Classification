@@ -44,13 +44,13 @@ python simclr.py --config_env configs/env.yml --config_exp configs/pretext/simcl
 ```
 
 In order to save time, we provide pretrained models in the README.md for all the datasets discussed in the paper. 
-First, download the pretrained model [here](https://drive.google.com/file/d/1261NDFfXuKR2Dh4RWHYYhcicdcPag9NZ/view?usp=sharing) and save it in your experiments directory. Then, move the downloaded model to the correct location (i.e. `repository_eccv/stl-10/pretext`) and calculate the nearest neighbors. This can be achieved by running the following commands:
+First, download the pretrained model [here](https://drive.google.com/file/d/1261NDFfXuKR2Dh4RWHYYhcicdcPag9NZ/view?usp=sharing) and save it in your experiments directory. Then, move the downloaded model to the correct location (i.e. `repository_eccv/stl-10/pretext/`) and calculate the nearest neighbors. This can be achieved by running the following commands:
 ```bash
 mv simclr_stl-10.pth.tar repository_eccv/stl-10/pretext/checkpoint.pth.tar  # Move model to correct location
-python tutorial_nn.py --config_env configs/env.yml --config_exp configs/    # Compute neighbors
+python tutorial_nn.py --config_env configs/env.yml --config_exp configs/pretext/simclr_stl10.yml    # Compute neighbors
 ```
 
-You should get similar results as:
+You should get the following results:
 ```
 > Restart from checkpoint repository_eccv/stl-10/pretext/checkpoint.pth.tar
 > Fill memory bank for mining the nearest neighbors (train) ...
@@ -111,10 +111,10 @@ As can be seen from the confusion matrix, the model confuses primarily between v
 If you find this tutorial useful for your research, please consider citing our paper:
 
 ```bibtex
-@inproceedings{wvangansbeke2020scan,
-  title={SCAN: Learning to Classify Images without Labels},
+@inproceedings{vangansbeke2020scan,
+  title={Scan: Learning to classify images without labels},
   author={Van Gansbeke, Wouter and Vandenhende, Simon and Georgoulis, Stamatios and Proesmans, Marc and Van Gool, Luc},
-  booktitle={European Conference on Computer Vision (ECCV)},
+  booktitle={Proceedings of the European Conference on Computer Vision},
   year={2020}
 }
 ```
