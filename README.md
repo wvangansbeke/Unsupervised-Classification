@@ -155,12 +155,15 @@ If you want to see another (more detailed) example for STL-10, checkout [TUTORIA
 If you find this repo useful for your research, please consider citing our paper:
 
 ```bibtex
-@inproceedings{vangansbeke2020scan,
-  title={Scan: Learning to classify images without labels},
-  author={Van Gansbeke, Wouter and Vandenhende, Simon and Georgoulis, Stamatios and Proesmans, Marc and Van Gool, Luc},
-  booktitle={Proceedings of the European Conference on Computer Vision},
-  year={2020}
-}
+@INPROCEEDINGS{8336587,
+  author={A. {Saini} and T. {Gupta} and R. {Kumar} and A. K. {Gupta} and M. {Panwar} and A. {Mittal}},
+  booktitle={2017 International Conference on Big Data, IoT and Data Science (BID)}, 
+  title={Image based Indian monument recognition using convoluted neural networks}, 
+  year={2017},
+  volume={},
+  number={},
+  pages={138-142},
+  doi={10.1109/BID.2017.8336587}}
 
 ```
 For any enquiries, please contact the main authors.
