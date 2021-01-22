@@ -37,21 +37,27 @@ def get_feature_dimensions_backbone(p):
     elif p['backbone'] == 'resnet50':
         return 2048
 
+    elif p['backbone'] == 'cellnet':
+        return  512
+
     else:
         raise NotImplementedError
 
 
 def get_model(p, pretrain_path=None):
     # Get backbone
-    if p['backbone'] == 'resnet18':
+    if p['backbone'] == 'cellnet':
+        from models.cellnet import CellNet
+        backbone = CellNet()
+
+    elif p['backbone'] == 'resnet18':
         if p['train_db_name'] in ['cifar-10', 'cifar-20']:
             from models.resnet_cifar import resnet18
             backbone = resnet18()
 
         elif p['train_db_name'] == 'stl-10':
             from models.resnet_stl import resnet18
-            backbone = resnet18()
-        
+            backbone = resnet18() 
         else:
             raise NotImplementedError
 
@@ -120,7 +126,11 @@ def get_model(p, pretrain_path=None):
 def get_train_dataset(p, transform, to_augmented_dataset=False,
                         to_neighbors_dataset=False, split=None):
     # Base dataset
-    if p['train_db_name'] == 'cifar-10':
+    if p['train_db_name'] == 'hep2':
+        from data.hep2 import Hep2
+        dataset=Hep2(train=True,transform=transform)
+
+    elif p['train_db_name'] == 'cifar-10':
         from data.cifar import CIFAR10
         dataset = CIFAR10(train=True, transform=transform, download=True)
 
@@ -159,7 +169,11 @@ def get_train_dataset(p, transform, to_augmented_dataset=False,
 
 def get_val_dataset(p, transform=None, to_neighbors_dataset=False):
     # Base dataset
-    if p['val_db_name'] == 'cifar-10':
+    if p['val_db_name'] == 'hep2':
+        from data.hep2 import Hep2
+        dataset=Hep2(train=True,transform=transform)
+
+    elif p['val_db_name'] == 'cifar-10':
         from data.cifar import CIFAR10
         dataset = CIFAR10(train=False, transform=transform, download=True)
     
