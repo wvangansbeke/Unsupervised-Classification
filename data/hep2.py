@@ -23,7 +23,7 @@ class Hep2(Dataset):
                 on a sample.
         """
         self.root_dir=root_dir
-        self.root_txt = root_dir+"\\Train.txt" if train else root_dir+"\\Test.txt"
+        self.root_txt = root_dir+"/Train.txt" if train else root_dir+"/Test.txt"
         f=open(self.root_txt,"r")
         self.img_list = f.readlines()
         self.transform = transform
@@ -36,7 +36,7 @@ class Hep2(Dataset):
         if torch.is_tensor(idx):
             idx = idx.tolist()
 
-        image = cv2.imread(self.root_dir+"\\"+self.img_list[idx].split(" ")[0])
+        image = cv2.imread(self.root_dir+"/"+self.img_list[idx].split(" ")[0])
         img_size = (image.shape[0],image.shape[1])
         image = Image.fromarray(image)
         #print("size of the data item",image.shape)
@@ -50,5 +50,5 @@ class Hep2(Dataset):
         return sample
     
     def get_image(self,index):
-        image = cv2.imread(self.root_dir+"\\"+self.img_list[idx].split(" ")[0])
+        image = cv2.imread(self.root_dir+"/"+self.img_list[idx].split(" ")[0])
         return image
