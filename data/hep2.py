@@ -14,7 +14,7 @@ from PIL import Image
 class Hep2(Dataset):
     """Face Landmarks dataset."""
 
-    def __init__(self, root_dir="C:\\Users\\Dell\\Documents\\Latent_space_models\\probable paper\\small",train=True, transform=None):
+    def __init__(self, root_dir="/content/small",train=True, transform=None):
         """
         Args:
             csv_file (string): Path to the csv file with annotations.
