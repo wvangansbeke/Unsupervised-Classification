@@ -31,22 +31,22 @@ def main():
 
     # Retrieve config file
     p = create_config(args.config_env, args.config_exp)
-    print(colored(p, 'red'))
+    print(p)
     
     # Model
-    print(colored('Retrieve model', 'blue'))
+    print('Retrieve model')
     model = get_model(p)
     print('Model is {}'.format(model.__class__.__name__))
     print('Model parameters: {:.2f}M'.format(sum(p.numel() for p in model.parameters()) / 1e6))
     print(model)
-    model = model.cuda()
+    #model = model.cuda()
    
     # CUDNN
-    print(colored('Set CuDNN benchmark', 'blue')) 
+    print('Set CuDNN benchmark') 
     torch.backends.cudnn.benchmark = True
     
     # Dataset
-    print(colored('Retrieve dataset', 'blue'))
+    print('Retrieve dataset')
     train_transforms = get_train_transformations(p)
     print('Train transforms:', train_transforms)
     val_transforms = get_val_transformations(p)
@@ -59,48 +59,48 @@ def main():
     print('Dataset contains {}/{} train/val samples'.format(len(train_dataset), len(val_dataset)))
     
     # Memory Bank
-    print(colored('Build MemoryBank', 'blue'))
+    print('Build MemoryBank')
     base_dataset = get_train_dataset(p, val_transforms, split='train') # Dataset w/o augs for knn eval
     base_dataloader = get_val_dataloader(p, base_dataset) 
     memory_bank_base = MemoryBank(len(base_dataset), 
                                 p['model_kwargs']['features_dim'],
                                 p['num_classes'], p['criterion_kwargs']['temperature'])
-    memory_bank_base.cuda()
+    #memory_bank_base.cuda()
     memory_bank_val = MemoryBank(len(val_dataset),
                                 p['model_kwargs']['features_dim'],
                                 p['num_classes'], p['criterion_kwargs']['temperature'])
-    memory_bank_val.cuda()
+    #memory_bank_val.cuda()
 
     # Criterion
-    print(colored('Retrieve criterion', 'blue'))
+    print('Retrieve criterion')
     criterion = get_criterion(p)
     print('Criterion is {}'.format(criterion.__class__.__name__))
-    criterion = criterion.cuda()
+    #criterion = criterion.cuda()
 
     # Optimizer and scheduler
-    print(colored('Retrieve optimizer', 'blue'))
+    print('Retrieve optimizer')
     optimizer = get_optimizer(p, model)
     print(optimizer)
  
     # Checkpoint
     if os.path.exists(p['pretext_checkpoint']):
-        print(colored('Restart from checkpoint {}'.format(p['pretext_checkpoint']), 'blue'))
+        print('Restart from checkpoint {}'.format(p['pretext_checkpoint']))
         checkpoint = torch.load(p['pretext_checkpoint'], map_location='cpu')
         optimizer.load_state_dict(checkpoint['optimizer'])
         model.load_state_dict(checkpoint['model'])
-        model.cuda()
+        #model.cuda()
         start_epoch = checkpoint['epoch']
 
     else:
-        print(colored('No checkpoint file at {}'.format(p['pretext_checkpoint']), 'blue'))
+        print('No checkpoint file at {}'.format(p['pretext_checkpoint']))
         start_epoch = 0
-        model = model.cuda()
+        #model = model.cuda()
     
     # Training
-    print(colored('Starting main loop', 'blue'))
+    print('Starting main loop')
     for epoch in range(start_epoch, p['epochs']):
-        print(colored('Epoch %d/%d' %(epoch, p['epochs']), 'yellow'))
-        print(colored('-'*15, 'yellow'))
+        print('Epoch %d/%d' %(epoch, p['epochs']))
+        print('-'*15)
 
         # Adjust lr
         lr = adjust_learning_rate(p, optimizer, epoch)
@@ -129,7 +129,7 @@ def main():
 
     # Mine the topk nearest neighbors at the very end (Train) 
     # These will be served as input to the SCAN loss.
-    print(colored('Fill memory bank for mining the nearest neighbors (train) ...', 'blue'))
+    print('Fill memory bank for mining the nearest neighbors (train) ...')
     fill_memory_bank(base_dataloader, model, memory_bank_base)
     topk = 20
     print('Mine the nearest neighbors (Top-%d)' %(topk)) 
@@ -140,7 +140,7 @@ def main():
    
     # Mine the topk nearest neighbors at the very end (Val)
     # These will be used for validation.
-    print(colored('Fill memory bank for mining the nearest neighbors (val) ...', 'blue'))
+    print('Fill memory bank for mining the nearest neighbors (val) ...')
     fill_memory_bank(val_dataloader, model, memory_bank_val)
     topk = 5
     print('Mine the nearest neighbors (Top-%d)' %(topk)) 
