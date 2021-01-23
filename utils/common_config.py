@@ -171,7 +171,7 @@ def get_val_dataset(p, transform=None, to_neighbors_dataset=False):
     # Base dataset
     if p['val_db_name'] == 'hep2':
         from data.hep2 import Hep2
-        dataset=Hep2(train=True,transform=transform)
+        dataset=Hep2(train=False,transform=transform)
 
     elif p['val_db_name'] == 'cifar-10':
         from data.cifar import CIFAR10
