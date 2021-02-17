@@ -8,7 +8,7 @@ import os
 class MyPath(object):
     @staticmethod
     def db_root_dir(database=''):
-        db_names = {'cifar-10', 'stl-10', 'cifar-20', 'imagenet', 'imagenet_50', 'imagenet_100', 'imagenet_200'}
+        db_names = {'cifar-10', 'stl-10', 'cifar-20', 'imagenet', 'imagenet_50', 'imagenet_100', 'imagenet_200', 'birds'}
         assert(database in db_names)
 
         if database == 'cifar-10':
@@ -25,6 +25,6 @@ class MyPath(object):
 
         elif database == 'birds':
             return '/content/Unsupervised-Classification/data/CUB_200_2011/images/'
-        
+
         else:
             raise NotImplementedError
