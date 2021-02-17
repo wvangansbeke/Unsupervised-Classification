@@ -68,6 +68,13 @@ class Birds(datasets.ImageFolder):
 
         return out
 
+    def get_image(self, index):
+        path, target = self.imgs[index]
+        with open(path, 'rb') as f:
+            img = Image.open(f).convert('RGB')
+        img = self.resize(img)
+        return img
+
 class ImageNetSubset(data.Dataset):
     def __init__(self, subset_file, root=MyPath.db_root_dir('imagenet'), split='train',
                     transform=None):
