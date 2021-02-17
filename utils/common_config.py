@@ -148,10 +148,8 @@ def get_train_dataset(p, transform, to_augmented_dataset=False,
 
     # added birds train dataset
     elif p['train_db_name'] == 'birds':
-        from torchvision.datasets import ImageFolder
-        birds_data_dir = '/content/Unsupervised-Classification/data/CUB_200_2011/images/' # Colab
-        birds_train_dir = os.path.join(birds_data_dir, 'train')
-        dataset = ImageFolder(birds_train_dir, transform=transform)
+        from data.imagenet import Birds
+        dataset = Birds(split='train', transform=transform)
 
     else:
         raise ValueError('Invalid train dataset {}'.format(p['train_db_name']))
@@ -194,10 +192,8 @@ def get_val_dataset(p, transform=None, to_neighbors_dataset=False):
 
     # added birds test dataset
     elif p['val_db_name'] == 'birds':
-        from torchvision.datasets import ImageFolder
-        birds_data_dir = '/content/Unsupervised-Classification/data/CUB_200_2011/images/' # Colab
-        birds_test_dir = os.path.join(birds_data_dir, 'test')
-        dataset = ImageFolder(birds_test_dir, transform=transform)
+        from data.imagenet import Birds
+        dataset = Birds(split='test', transform=transform)
 
     else:
         raise ValueError('Invalid validation dataset {}'.format(p['val_db_name']))
