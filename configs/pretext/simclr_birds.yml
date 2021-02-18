@@ -5,7 +5,7 @@ setup: simclr
 backbone: resnet50
 model_kwargs:
    head: mlp
-   features_dim: 128
+   features_dim: 2048
 
 # Dataset
 train_db_name: birds
@@ -15,20 +15,20 @@ num_classes: 200
 # Loss
 criterion: simclr
 criterion_kwargs:
-   temperature: 0.1
+   temperature: 0.07
 
 # Hyperparameters
-epochs: 10
+epochs: 100
 optimizer: sgd
 optimizer_kwargs:
    nesterov: False
    weight_decay: 0.0001
    momentum: 0.9
-   lr: 0.4
+   lr: 0.005625
 scheduler: cosine
 scheduler_kwargs:
    lr_decay_rate: 0.1
-batch_size: 32
+batch_size: 48
 num_workers: 8
 
 # Transformations
