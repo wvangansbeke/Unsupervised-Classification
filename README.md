@@ -8,7 +8,7 @@ This repo contains the Pytorch implementation of our paper:
 
 __Accepted at ECCV 2020 ([Slides](https://wvangansbeke.github.io/wvangansbeke.github.io/pdfs/unsupervised_classification.pdf)). Watch the explanation of our paper by Yannic Kilcher on [YouTube](https://www.youtube.com/watch?v=hQEnzdLkPj4).__
 
-🏆 __SOTA for image clustering on 4 benchmarks: CIFAR-10, CIFAR-100, STL-10 and ImageNet. Check out the [Papers-with-code](https://paperswithcode.com/paper/learning-to-classify-images-without-labels) website for [Image Clustering](https://paperswithcode.com/task/image-clustering) or [Unsupervised Classification](https://paperswithcode.com/task/unsupervised-image-classification) for detailed comparisons with prior work.__
+🏆 __SOTA on 4 benchmarks. Check out the [Papers-with-code](https://paperswithcode.com/paper/learning-to-classify-images-without-labels) website for [Image Clustering](https://paperswithcode.com/task/image-clustering) or [Unsupervised Classification](https://paperswithcode.com/task/unsupervised-image-classification).__
 
 🆕 __Interested in unsupervised semantic segmentation? Check out our recent work: [MaskContrast](https://github.com/wvangansbeke/Unsupervised-Semantic-Segmentation).__
 <p align="center">
