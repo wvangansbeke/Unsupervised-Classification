@@ -1,4 +1,4 @@
-# SCAN: Learning to Classify Images without Labels
+# Learning to Classify Images without Labels
 
 
 This repo contains the Pytorch implementation of our paper:
@@ -8,7 +8,9 @@ This repo contains the Pytorch implementation of our paper:
 
 __Accepted at ECCV 2020 ([Slides](https://wvangansbeke.github.io/wvangansbeke.github.io/pdfs/unsupervised_classification.pdf)). Watch the explanation of our paper by Yannic Kilcher on [YouTube](https://www.youtube.com/watch?v=hQEnzdLkPj4).__
 
-🆕 __Results: Check out the benchmarks on the [Papers-with-code](https://paperswithcode.com/paper/learning-to-classify-images-without-labels) website for [Image Clustering](https://paperswithcode.com/task/image-clustering) or [Unsupervised Image Classification](https://paperswithcode.com/task/unsupervised-image-classification).__
+🏆 __SOTA for image clustering on 4 benchmarks: CIFAR-10, CIFAR-100, STL-10 and ImageNet. Check out the [Papers-with-code](https://paperswithcode.com/paper/learning-to-classify-images-without-labels) website for [Image Clustering](https://paperswithcode.com/task/image-clustering) or [Unsupervised Classification](https://paperswithcode.com/task/unsupervised-image-classification) for detailed comparisons with prior work.__
+
+🆕 __Interested in unsupervised semantic segmentation? Check out our recent work: [MaskContrast](https://github.com/wvangansbeke/Unsupervised-Semantic-Segmentation).__
 <p align="center">
     <img src="images/teaser.jpg" />
 <p align="center">
@@ -150,7 +152,6 @@ python eval.py --config_exp configs/scan/imagenet_eval.yml --model $MODEL_PATH_I
 If you want to see another (more detailed) example for STL-10, checkout [TUTORIAL.md](https://github.com/wvangansbeke/Unsupervised-Classification/blob/master/TUTORIAL.md). It provides a detailed guide and includes visualizations and log files with the training progress.
 
 ## Citation
-
 
 If you find this repo useful for your research, please consider citing our paper:
 
