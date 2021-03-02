@@ -102,7 +102,7 @@ class MNIST(Dataset):
 
         out = {'image': img, 'target': target, 'meta': {'im_size': img_size, 'index': index}}
 
-        return img, target
+        return out
 
     def __len__(self):
         return len(self.data)
