@@ -65,7 +65,7 @@ def get_model(p, pretrain_path=None):
             backbone = resnet50()
 
         # added birds with resnet50
-    elif p['train_db_name'] in ['birds', 'mnist']:
+        elif p['train_db_name'] in ['birds', 'mnist']:
             from models.resnet import resnet50
             backbone = resnet50()
 
