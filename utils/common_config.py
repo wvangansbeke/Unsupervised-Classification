@@ -52,6 +52,10 @@ def get_model(p, pretrain_path=None):
             from models.resnet_stl import resnet18
             backbone = resnet18()
 
+        elif p['train_db_name'] == 'mnist':
+            from models.resnet_stl import resnet18
+            backbone = resnet18()
+
         else:
             raise NotImplementedError
 
@@ -61,7 +65,7 @@ def get_model(p, pretrain_path=None):
             backbone = resnet50()
 
         # added birds with resnet50
-        elif p['train_db_name'] == 'birds':
+    elif p['train_db_name'] in ['birds', 'mnist']:
             from models.resnet import resnet50
             backbone = resnet50()
 
@@ -137,6 +141,10 @@ def get_train_dataset(p, transform, to_augmented_dataset=False,
         from data.stl import STL10
         dataset = STL10(split=split, transform=transform, download=True)
 
+    elif p['train_db_name'] == 'mnist':
+        from data.mnist import MNIST
+        dataset = MNIST(train=True, transform=transform, download=True)
+
     elif p['train_db_name'] == 'imagenet':
         from data.imagenet import ImageNet
         dataset = ImageNet(split='train', transform=transform)
@@ -176,6 +184,10 @@ def get_val_dataset(p, transform=None, to_neighbors_dataset=False):
     elif p['val_db_name'] == 'cifar-20':
         from data.cifar import CIFAR20
         dataset = CIFAR20(train=False, transform=transform, download=True)
+
+    elif p['val_db_name'] == 'mnist':
+        from data.mnist import MNIST
+        dataset = MNIST(train=False, transform=transform, download=True)
 
     elif p['val_db_name'] == 'stl-10':
         from data.stl import STL10
@@ -231,22 +243,37 @@ def get_train_transformations(p):
 
     elif p['augmentation_strategy'] == 'simclr':
         # Augmentation strategy from the SimCLR paper
-        return transforms.Compose([
-            transforms.RandomResizedCrop(**p['augmentation_kwargs']['random_resized_crop']),
-            transforms.RandomHorizontalFlip(),
-            transforms.RandomApply([
-                transforms.ColorJitter(**p['augmentation_kwargs']['color_jitter'])
-            ], p=p['augmentation_kwargs']['color_jitter_random_apply']['p']),
-            transforms.RandomGrayscale(**p['augmentation_kwargs']['random_grayscale']),
-            transforms.ToTensor(),
-            transforms.Normalize(**p['augmentation_kwargs']['normalize'])
-        ])
+
+        if p['train_db_name'] == 'mnist':
+            return transforms.Compose([
+                transforms.Resize(48),
+                transforms.RandomResizedCrop(**p['augmentation_kwargs']['random_resized_crop']),
+                transforms.RandomHorizontalFlip(),
+                transforms.RandomApply([
+                    transforms.ColorJitter(**p['augmentation_kwargs']['color_jitter'])
+                ], p=p['augmentation_kwargs']['color_jitter_random_apply']['p']),
+                transforms.RandomGrayscale(**p['augmentation_kwargs']['random_grayscale']),
+                transforms.ToTensor(),
+                transforms.Normalize(**p['augmentation_kwargs']['normalize'])
+            ])
+
+        else:
+            return transforms.Compose([
+                transforms.RandomResizedCrop(**p['augmentation_kwargs']['random_resized_crop']),
+                transforms.RandomHorizontalFlip(),
+                transforms.RandomApply([
+                    transforms.ColorJitter(**p['augmentation_kwargs']['color_jitter'])
+                ], p=p['augmentation_kwargs']['color_jitter_random_apply']['p']),
+                transforms.RandomGrayscale(**p['augmentation_kwargs']['random_grayscale']),
+                transforms.ToTensor(),
+                transforms.Normalize(**p['augmentation_kwargs']['normalize'])
+            ])
 
     elif p['augmentation_strategy'] == 'ours':
         # Augmentation strategy from our paper
         return transforms.Compose([
             transforms.RandomHorizontalFlip(),
-            transforms.RandomCrop(p['augmentation_kwargs']['crop_size']),
+            transforms.RandomCrop(p['augmentation_kwargs']['crop_size'], pad_if_needed=True),
             Augment(p['augmentation_kwargs']['num_strong_augs']),
             transforms.ToTensor(),
             transforms.Normalize(**p['augmentation_kwargs']['normalize']),
@@ -260,10 +287,18 @@ def get_train_transformations(p):
 
 
 def get_val_transformations(p):
-    return transforms.Compose([
-            transforms.CenterCrop(p['transformation_kwargs']['crop_size']),
-            transforms.ToTensor(),
-            transforms.Normalize(**p['transformation_kwargs']['normalize'])])
+    if p['train_db_name'] == 'mnist':
+        return transforms.Compose([
+                transforms.Resize(48),
+                transforms.CenterCrop(p['transformation_kwargs']['crop_size']),
+                transforms.ToTensor(),
+                transforms.Normalize(**p['transformation_kwargs']['normalize'])])
+
+    else:
+        return transforms.Compose([
+                transforms.CenterCrop(p['transformation_kwargs']['crop_size']),
+                transforms.ToTensor(),
+                transforms.Normalize(**p['transformation_kwargs']['normalize'])])
 
 
 def get_optimizer(p, model, cluster_head_only=False):
