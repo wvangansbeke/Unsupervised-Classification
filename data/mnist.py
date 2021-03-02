@@ -6,6 +6,7 @@ import os.path
 import numpy as np
 import torch
 import codecs
+from utils.mypath import MyPath
 import string
 import gzip
 import lzma
