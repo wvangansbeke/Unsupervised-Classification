@@ -104,6 +104,11 @@ class MNIST(Dataset):
 
         return out
 
+    # Note: For eval.py. From /data/cifar.py
+    def get_image(self, index):
+        img = self.data[index]
+        return img
+
     def __len__(self):
         return len(self.data)
 

@@ -41,7 +41,7 @@ transformation_kwargs:
       std: [0.5]
 
 # Hyperparameters
-epochs: 200
+epochs: 5
 optimizer: adam
 optimizer_kwargs:
    lr: 0.0001

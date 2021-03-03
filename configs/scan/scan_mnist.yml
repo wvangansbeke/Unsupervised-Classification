@@ -43,7 +43,7 @@ optimizer: adam
 optimizer_kwargs:
    lr: 0.0001
    weight_decay: 0.0001
-epochs: 50
+epochs: 5
 batch_size: 48
 num_workers: 8
 
