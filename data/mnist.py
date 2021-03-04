@@ -1,4 +1,4 @@
-from torch.utils.data import Dataset
+from .vision import VisionDataset
 import warnings
 from PIL import Image
 import os
@@ -6,14 +6,15 @@ import os.path
 import numpy as np
 import torch
 import codecs
-from utils.mypath import MyPath
 import string
 import gzip
 import lzma
-from torchvision.datasets.utils import download_url, download_and_extract_archive, extract_archive, \
+from typing import Any, Callable, Dict, IO, List, Optional, Tuple, Union
+from .utils import download_url, download_and_extract_archive, extract_archive, \
     verify_str_arg
+from utils.mypath import MyPath
 
-class MNIST(Dataset):
+[docs]class MNIST(VisionDataset):
     """`MNIST <http://yann.lecun.com/exdb/mnist/>`_ Dataset.
 
     Args:
@@ -62,12 +63,19 @@ class MNIST(Dataset):
         warnings.warn("test_data has been renamed data")
         return self.data
 
-    def __init__(self, root=MyPath.db_root_dir('mnist'), train=True,
-            transform=None, download=False):
+    def __init__(
+            self,
+            root: str = MyPath.db_root_dir('mnist'),
+            train: bool = True,
+            transform: Optional[Callable] = None,
+            target_transform: Optional[Callable] = None,
+            download: bool = False,
+    ) -> None:
         super(MNIST, self).__init__()
         self.root = root
         self.transform = transform
         self.train = train  # training set or test set
+
 
         if download:
             self.download()
@@ -82,7 +90,7 @@ class MNIST(Dataset):
             data_file = self.test_file
         self.data, self.targets = torch.load(os.path.join(self.processed_folder, data_file))
 
-    def __getitem__(self, index):
+    def __getitem__(self, index: int) -> Tuple[Any, Any]:
         """
         Args:
             index (int): Index
@@ -95,10 +103,12 @@ class MNIST(Dataset):
         # doing this so that it is consistent with all other datasets
         # to return a PIL Image
         img = Image.fromarray(img.numpy(), mode='L')
-        img_size = img.size
 
         if self.transform is not None:
             img = self.transform(img)
+
+        if self.target_transform is not None:
+            target = self.target_transform(target)
 
         out = {'image': img, 'target': target, 'meta': {'im_size': img_size, 'index': index}}
 
@@ -109,28 +119,28 @@ class MNIST(Dataset):
         img = self.data[index]
         return img
 
-    def __len__(self):
+    def __len__(self) -> int:
         return len(self.data)
 
     @property
-    def raw_folder(self):
+    def raw_folder(self) -> str:
         return os.path.join(self.root, self.__class__.__name__, 'raw')
 
     @property
-    def processed_folder(self):
+    def processed_folder(self) -> str:
         return os.path.join(self.root, self.__class__.__name__, 'processed')
 
     @property
-    def class_to_idx(self):
+    def class_to_idx(self) -> Dict[str, int]:
         return {_class: i for i, _class in enumerate(self.classes)}
 
-    def _check_exists(self):
+    def _check_exists(self) -> bool:
         return (os.path.exists(os.path.join(self.processed_folder,
                                             self.training_file)) and
                 os.path.exists(os.path.join(self.processed_folder,
                                             self.test_file)))
 
-    def download(self):
+    def download(self) -> None:
         """Download the MNIST data if it doesn't exist in processed_folder already."""
 
         if self._check_exists():
@@ -162,66 +172,5 @@ class MNIST(Dataset):
 
         print('Done!')
 
-    def extra_repr(self):
+    def extra_repr(self) -> str:
         return "Split: {}".format("Train" if self.train is True else "Test")
-
-def get_int(b):
-    return int(codecs.encode(b, 'hex'), 16)
-
-def open_maybe_compressed_file(path):
-    """Return a file object that possibly decompresses 'path' on the fly.
-       Decompression occurs when argument `path` is a string and ends with '.gz' or '.xz'.
-    """
-    if not isinstance(path, torch._six.string_classes):
-        return path
-    if path.endswith('.gz'):
-        return gzip.open(path, 'rb')
-    if path.endswith('.xz'):
-        return lzma.open(path, 'rb')
-    return open(path, 'rb')
-
-
-SN3_PASCALVINCENT_TYPEMAP = {
-    8: (torch.uint8, np.uint8, np.uint8),
-    9: (torch.int8, np.int8, np.int8),
-    11: (torch.int16, np.dtype('>i2'), 'i2'),
-    12: (torch.int32, np.dtype('>i4'), 'i4'),
-    13: (torch.float32, np.dtype('>f4'), 'f4'),
-    14: (torch.float64, np.dtype('>f8'), 'f8')
-}
-
-
-def read_sn3_pascalvincent_tensor(path, strict=True):
-    """Read a SN3 file in "Pascal Vincent" format (Lush file 'libidx/idx-io.lsh').
-       Argument may be a filename, compressed filename, or file object.
-    """
-    # read
-    with open_maybe_compressed_file(path) as f:
-        data = f.read()
-    # parse
-    magic = get_int(data[0:4])
-    nd = magic % 256
-    ty = magic // 256
-    assert nd >= 1 and nd <= 3
-    assert ty >= 8 and ty <= 14
-    m = SN3_PASCALVINCENT_TYPEMAP[ty]
-    s = [get_int(data[4 * (i + 1): 4 * (i + 2)]) for i in range(nd)]
-    parsed = np.frombuffer(data, dtype=m[1], offset=(4 * (nd + 1)))
-    assert parsed.shape[0] == np.prod(s) or not strict
-    return torch.from_numpy(parsed.astype(m[2], copy=False)).view(*s)
-
-
-def read_label_file(path):
-    with open(path, 'rb') as f:
-        x = read_sn3_pascalvincent_tensor(f, strict=False)
-    assert(x.dtype == torch.uint8)
-    assert(x.ndimension() == 1)
-    return x.long()
-
-
-def read_image_file(path):
-    with open(path, 'rb') as f:
-        x = read_sn3_pascalvincent_tensor(f, strict=False)
-    assert(x.dtype == torch.uint8)
-    assert(x.ndimension() == 3)
-    return x
