@@ -16,10 +16,10 @@ class ImageNet(datasets.ImageFolder):
     def __init__(self, root=MyPath.db_root_dir('imagenet'), split='train', transform=None):
         super(ImageNet, self).__init__(root=os.path.join(root, 'ILSVRC2012_img_%s' %(split)),
                                          transform=None)
-        self.transform = transform 
+        self.transform = transform
         self.split = split
         self.resize = tf.Resize(256)
-    
+
     def __len__(self):
         return len(self.imgs)
 
@@ -41,12 +41,42 @@ class ImageNet(datasets.ImageFolder):
         path, target = self.imgs[index]
         with open(path, 'rb') as f:
             img = Image.open(f).convert('RGB')
-        img = self.resize(img) 
+        img = self.resize(img)
         return img
 
+class Birds(datasets.ImageFolder):
+    def __init__(self, root=MyPath.db_root_dir('birds'), split='train', transform=None):
+        super(Birds, self).__init__(root=os.path.join(root, split), transform=None)
+        self.transform = transform
+        self.split = split
+        self.resize = tf.Resize(256)
+
+    def __len__(self):
+        return len(self.imgs)
+
+    def __getitem__(self, index):
+        path, target = self.imgs[index]
+        with open(path, 'rb') as f:
+            img = Image.open(f).convert('RGB')
+        im_size = img.size
+        img = self.resize(img)
+
+        if self.transform is not None:
+            img = self.transform(img)
+
+        out = {'image': img, 'target': target, 'meta': {'im_size': im_size, 'index': index}}
+
+        return out
+
+    def get_image(self, index):
+        path, target = self.imgs[index]
+        with open(path, 'rb') as f:
+            img = Image.open(f).convert('RGB')
+        img = self.resize(img)
+        return img
 
 class ImageNetSubset(data.Dataset):
-    def __init__(self, subset_file, root=MyPath.db_root_dir('imagenet'), split='train', 
+    def __init__(self, subset_file, root=MyPath.db_root_dir('imagenet'), split='train',
                     transform=None):
         super(ImageNetSubset, self).__init__()
 
@@ -69,10 +99,10 @@ class ImageNetSubset(data.Dataset):
             subdir_path = os.path.join(self.root, subdir)
             files = sorted(glob(os.path.join(self.root, subdir, '*.JPEG')))
             for f in files:
-                imgs.append((f, i)) 
-        self.imgs = imgs 
+                imgs.append((f, i))
+        self.imgs = imgs
         self.classes = class_names
-    
+
 	# Resize
         self.resize = tf.Resize(256)
 
@@ -80,7 +110,7 @@ class ImageNetSubset(data.Dataset):
         path, target = self.imgs[index]
         with open(path, 'rb') as f:
             img = Image.open(f).convert('RGB')
-        img = self.resize(img) 
+        img = self.resize(img)
         return img
 
     def __len__(self):
@@ -91,7 +121,7 @@ class ImageNetSubset(data.Dataset):
         with open(path, 'rb') as f:
             img = Image.open(f).convert('RGB')
         im_size = img.size
-        img = self.resize(img) 
+        img = self.resize(img)
         class_name = self.classes[target]
 
         if self.transform is not None:
