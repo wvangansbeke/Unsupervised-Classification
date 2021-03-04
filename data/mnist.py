@@ -14,7 +14,7 @@ from .utils import download_url, download_and_extract_archive, extract_archive, 
     verify_str_arg
 from utils.mypath import MyPath
 
-[docs]class MNIST(VisionDataset):
+class MNIST(VisionDataset):
     """`MNIST <http://yann.lecun.com/exdb/mnist/>`_ Dataset.
 
     Args:
