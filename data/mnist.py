@@ -71,11 +71,9 @@ class MNIST(VisionDataset):
             target_transform: Optional[Callable] = None,
             download: bool = False,
     ) -> None:
-        super(MNIST, self).__init__()
-        self.root = root
-        self.transform = transform
+        super(MNIST, self).__init__(root, transform=transform,
+                                    target_transform=target_transform)
         self.train = train  # training set or test set
-
 
         if download:
             self.download()
