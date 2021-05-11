@@ -5,6 +5,7 @@ Licensed under the CC BY-NC 4.0 license (https://creativecommons.org/licenses/by
 import argparse
 import os
 import numpy as np
+import torch
 
 from utils.config import create_config
 from utils.common_config import get_model, get_train_dataset, \
