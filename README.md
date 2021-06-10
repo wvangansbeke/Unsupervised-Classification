@@ -27,7 +27,7 @@ This repo contains the Pytorch implementation of our paper:
 
 ## Contents
 1. [Introduction](#introduction)
-0. [Prior Work](#problems-with-prior-work)
+0. [Prior Work](#prior-work)
 0. [Installation](#installation)
 0. [Training](#training)
 0. [Model Zoo](#model-zoo)
