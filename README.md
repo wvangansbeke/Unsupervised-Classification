@@ -14,7 +14,7 @@ This repo contains the Pytorch implementation of our paper:
 <p align="center">
     <img src="images/teaser.jpg" />
 <p align="center">
-    <img src="images/pipeline.png" />
+    <img src="images/pipeline.png" style="background-color:white;"/>
 
 
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/learning-to-classify-images-without-labels/unsupervised-image-classification-on-imagenet)](https://paperswithcode.com/sota/unsupervised-image-classification-on-imagenet?p=learning-to-classify-images-without-labels)
