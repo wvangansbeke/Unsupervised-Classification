@@ -10,7 +10,7 @@ This repo contains the Pytorch implementation of our paper:
 
 - 🏆 __SOTA on 4 benchmarks. Check out [Papers With Code](https://paperswithcode.com/paper/learning-to-classify-images-without-labels) for [Image Clustering](https://paperswithcode.com/task/image-clustering) or [Unsup. Classification](https://paperswithcode.com/task/unsupervised-image-classification).__
 - Related works:
-    - 🆕 __Interested in unsupervised semantic segmentation? Check out our new preprint: [MaskDistill](https://github.com/wvangansbeke/Unsupervised-Semantic-Segmentation).__
+    - 🆕 __Interested in unsupervised semantic segmentation? Check out our new preprint: [MaskDistill](https://github.com/wvangansbeke/MaskDistill).__
     - 🆕 __Interested in representation learning on non-curated datasets? Check out our NeurIPS'21 [paper](https://arxiv.org/abs/2106.05967) and [code](https://github.com/wvangansbeke/Revisiting-Contrastive-SSL).__
     - 🆕 __Check out our ICCV'21 paper: [MaskContrast](https://github.com/wvangansbeke/Unsupervised-Semantic-Segmentation).__
     - 📜 __Looking for influential papers in self-supervised learning? Check out this [reading list](https://github.com/wvangansbeke/Self-Supervised-Learning-Overview).__
