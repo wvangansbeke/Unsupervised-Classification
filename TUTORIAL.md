@@ -30,9 +30,7 @@ I will use an environment with Python 3.7, Pytorch 1.6, CUDA 10.2 and CUDNN 7.5.
 Adapt the path in `configs/env.yml` to `repository_eccv/`, since this directory will be used in this tutorial. 
 Make the following directories. The models will be saved there, other directories will be made on the fly if necessary.
 ```bash
-mkdir repository_eccv/
-mkdir repository_eccv/stl-10/
-mkdir repository_eccv/stl-10/pretext/
+mkdir -p repository_eccv/stl-10/pretext/
 ```
 Set the path in `utils/mypath.py` to your dataset root path as mentioned in the README.md
 
