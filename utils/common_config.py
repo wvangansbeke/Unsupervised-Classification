@@ -10,7 +10,7 @@ import torchvision.transforms as transforms
 from data.augment import Augment, Cutout
 from utils.collate import collate_custom
 
- 
+
 def get_criterion(p):
     if p['criterion'] == 'simclr':
         from losses.losses import SimCLRLoss
@@ -51,17 +51,26 @@ def get_model(p, pretrain_path=None):
         elif p['train_db_name'] == 'stl-10':
             from models.resnet_stl import resnet18
             backbone = resnet18()
-        
+
+        elif p['train_db_name'] == 'mnist':
+            from models.resnet_mnist import resnet18
+            backbone = resnet18()
+
         else:
             raise NotImplementedError
 
     elif p['backbone'] == 'resnet50':
         if 'imagenet' in p['train_db_name']:
             from models.resnet import resnet50
-            backbone = resnet50()  
+            backbone = resnet50()
+
+        # added birds with resnet50
+        elif p['train_db_name'] in ['birds', 'mnist']:
+            from models.resnet import resnet50
+            backbone = resnet50()
 
         else:
-            raise NotImplementedError 
+            raise NotImplementedError
 
     else:
         raise ValueError('Invalid backbone {}'.format(p['backbone']))
@@ -83,16 +92,16 @@ def get_model(p, pretrain_path=None):
     # Load pretrained weights
     if pretrain_path is not None and os.path.exists(pretrain_path):
         state = torch.load(pretrain_path, map_location='cpu')
-        
+
         if p['setup'] == 'scan': # Weights are supposed to be transfered from contrastive training
             missing = model.load_state_dict(state, strict=False)
             assert(set(missing[1]) == {
-                'contrastive_head.0.weight', 'contrastive_head.0.bias', 
+                'contrastive_head.0.weight', 'contrastive_head.0.bias',
                 'contrastive_head.2.weight', 'contrastive_head.2.bias'}
                 or set(missing[1]) == {
                 'contrastive_head.weight', 'contrastive_head.bias'})
 
-        elif p['setup'] == 'selflabel': # Weights are supposed to be transfered from scan 
+        elif p['setup'] == 'selflabel': # Weights are supposed to be transfered from scan
             # We only continue with the best head (pop all heads first, then copy back the best head)
             model_state = state['model']
             all_heads = [k for k in model_state.keys() if 'cluster_head' in k]
@@ -132,6 +141,10 @@ def get_train_dataset(p, transform, to_augmented_dataset=False,
         from data.stl import STL10
         dataset = STL10(split=split, transform=transform, download=True)
 
+    elif p['train_db_name'] == 'mnist':
+        from data.mnist import MNIST
+        dataset = MNIST(train=True, transform=transform, download=True)
+
     elif p['train_db_name'] == 'imagenet':
         from data.imagenet import ImageNet
         dataset = ImageNet(split='train', transform=transform)
@@ -141,9 +154,14 @@ def get_train_dataset(p, transform, to_augmented_dataset=False,
         subset_file = './data/imagenet_subsets/%s.txt' %(p['train_db_name'])
         dataset = ImageNetSubset(subset_file=subset_file, split='train', transform=transform)
 
+    # added birds train dataset
+    elif p['train_db_name'] == 'birds':
+        from data.imagenet import Birds
+        dataset = Birds(split='train', transform=transform)
+
     else:
         raise ValueError('Invalid train dataset {}'.format(p['train_db_name']))
-    
+
     # Wrap into other dataset (__getitem__ changes)
     if to_augmented_dataset: # Dataset returns an image and an augmentation of that image.
         from data.custom_dataset import AugmentedDataset
@@ -153,7 +171,7 @@ def get_train_dataset(p, transform, to_augmented_dataset=False,
         from data.custom_dataset import NeighborsDataset
         indices = np.load(p['topk_neighbors_train_path'])
         dataset = NeighborsDataset(dataset, indices, p['num_neighbors'])
-    
+
     return dataset
 
 
@@ -162,28 +180,37 @@ def get_val_dataset(p, transform=None, to_neighbors_dataset=False):
     if p['val_db_name'] == 'cifar-10':
         from data.cifar import CIFAR10
         dataset = CIFAR10(train=False, transform=transform, download=True)
-    
+
     elif p['val_db_name'] == 'cifar-20':
         from data.cifar import CIFAR20
         dataset = CIFAR20(train=False, transform=transform, download=True)
 
+    elif p['val_db_name'] == 'mnist':
+        from data.mnist import MNIST
+        dataset = MNIST(train=False, transform=transform, download=True)
+
     elif p['val_db_name'] == 'stl-10':
         from data.stl import STL10
         dataset = STL10(split='test', transform=transform, download=True)
-    
+
     elif p['val_db_name'] == 'imagenet':
         from data.imagenet import ImageNet
         dataset = ImageNet(split='val', transform=transform)
-    
+
     elif p['val_db_name'] in ['imagenet_50', 'imagenet_100', 'imagenet_200']:
         from data.imagenet import ImageNetSubset
         subset_file = './data/imagenet_subsets/%s.txt' %(p['val_db_name'])
         dataset = ImageNetSubset(subset_file=subset_file, split='val', transform=transform)
-    
+
+    # added birds test dataset
+    elif p['val_db_name'] == 'birds':
+        from data.imagenet import Birds
+        dataset = Birds(split='test', transform=transform)
+
     else:
         raise ValueError('Invalid validation dataset {}'.format(p['val_db_name']))
-    
-    # Wrap into other dataset (__getitem__ changes) 
+
+    # Wrap into other dataset (__getitem__ changes)
     if to_neighbors_dataset: # Dataset returns an image and one of its nearest neighbors.
         from data.custom_dataset import NeighborsDataset
         indices = np.load(p['topk_neighbors_val_path'])
@@ -193,7 +220,7 @@ def get_val_dataset(p, transform=None, to_neighbors_dataset=False):
 
 
 def get_train_dataloader(p, dataset):
-    return torch.utils.data.DataLoader(dataset, num_workers=p['num_workers'], 
+    return torch.utils.data.DataLoader(dataset, num_workers=p['num_workers'],
             batch_size=p['batch_size'], pin_memory=True, collate_fn=collate_custom,
             drop_last=True, shuffle=True)
 
@@ -213,25 +240,40 @@ def get_train_transformations(p):
             transforms.ToTensor(),
             transforms.Normalize(**p['augmentation_kwargs']['normalize'])
         ])
-    
+
     elif p['augmentation_strategy'] == 'simclr':
         # Augmentation strategy from the SimCLR paper
-        return transforms.Compose([
-            transforms.RandomResizedCrop(**p['augmentation_kwargs']['random_resized_crop']),
-            transforms.RandomHorizontalFlip(),
-            transforms.RandomApply([
-                transforms.ColorJitter(**p['augmentation_kwargs']['color_jitter'])
-            ], p=p['augmentation_kwargs']['color_jitter_random_apply']['p']),
-            transforms.RandomGrayscale(**p['augmentation_kwargs']['random_grayscale']),
-            transforms.ToTensor(),
-            transforms.Normalize(**p['augmentation_kwargs']['normalize'])
-        ])
-    
+
+        if p['train_db_name'] == 'mnist':
+            return transforms.Compose([
+                transforms.Resize(48),
+                transforms.RandomResizedCrop(**p['augmentation_kwargs']['random_resized_crop']),
+                transforms.RandomHorizontalFlip(),
+                transforms.RandomApply([
+                    transforms.ColorJitter(**p['augmentation_kwargs']['color_jitter'])
+                ], p=p['augmentation_kwargs']['color_jitter_random_apply']['p']),
+                transforms.RandomGrayscale(**p['augmentation_kwargs']['random_grayscale']),
+                transforms.ToTensor(),
+                transforms.Normalize(**p['augmentation_kwargs']['normalize'])
+            ])
+
+        else:
+            return transforms.Compose([
+                transforms.RandomResizedCrop(**p['augmentation_kwargs']['random_resized_crop']),
+                transforms.RandomHorizontalFlip(),
+                transforms.RandomApply([
+                    transforms.ColorJitter(**p['augmentation_kwargs']['color_jitter'])
+                ], p=p['augmentation_kwargs']['color_jitter_random_apply']['p']),
+                transforms.RandomGrayscale(**p['augmentation_kwargs']['random_grayscale']),
+                transforms.ToTensor(),
+                transforms.Normalize(**p['augmentation_kwargs']['normalize'])
+            ])
+
     elif p['augmentation_strategy'] == 'ours':
-        # Augmentation strategy from our paper 
+        # Augmentation strategy from our paper
         return transforms.Compose([
             transforms.RandomHorizontalFlip(),
-            transforms.RandomCrop(p['augmentation_kwargs']['crop_size']),
+            transforms.RandomCrop(p['augmentation_kwargs']['crop_size'], pad_if_needed=True),
             Augment(p['augmentation_kwargs']['num_strong_augs']),
             transforms.ToTensor(),
             transforms.Normalize(**p['augmentation_kwargs']['normalize']),
@@ -239,38 +281,46 @@ def get_train_transformations(p):
                 n_holes = p['augmentation_kwargs']['cutout_kwargs']['n_holes'],
                 length = p['augmentation_kwargs']['cutout_kwargs']['length'],
                 random = p['augmentation_kwargs']['cutout_kwargs']['random'])])
-    
+
     else:
         raise ValueError('Invalid augmentation strategy {}'.format(p['augmentation_strategy']))
 
 
 def get_val_transformations(p):
-    return transforms.Compose([
-            transforms.CenterCrop(p['transformation_kwargs']['crop_size']),
-            transforms.ToTensor(), 
-            transforms.Normalize(**p['transformation_kwargs']['normalize'])])
+    if p['train_db_name'] == 'mnist':
+        return transforms.Compose([
+                transforms.Resize(48),
+                transforms.CenterCrop(p['transformation_kwargs']['crop_size']),
+                transforms.ToTensor(),
+                transforms.Normalize(**p['transformation_kwargs']['normalize'])])
+
+    else:
+        return transforms.Compose([
+                transforms.CenterCrop(p['transformation_kwargs']['crop_size']),
+                transforms.ToTensor(),
+                transforms.Normalize(**p['transformation_kwargs']['normalize'])])
 
 
 def get_optimizer(p, model, cluster_head_only=False):
-    if cluster_head_only: # Only weights in the cluster head will be updated 
+    if cluster_head_only: # Only weights in the cluster head will be updated
         for name, param in model.named_parameters():
                 if 'cluster_head' in name:
-                    param.requires_grad = True 
+                    param.requires_grad = True
                 else:
-                    param.requires_grad = False 
+                    param.requires_grad = False
         params = list(filter(lambda p: p.requires_grad, model.parameters()))
         assert(len(params) == 2 * p['num_heads'])
 
     else:
         params = model.parameters()
-                
+
 
     if p['optimizer'] == 'sgd':
         optimizer = torch.optim.SGD(params, **p['optimizer_kwargs'])
 
     elif p['optimizer'] == 'adam':
         optimizer = torch.optim.Adam(params, **p['optimizer_kwargs'])
-    
+
     else:
         raise ValueError('Invalid optimizer {}'.format(p['optimizer']))
 
@@ -279,11 +329,11 @@ def get_optimizer(p, model, cluster_head_only=False):
 
 def adjust_learning_rate(p, optimizer, epoch):
     lr = p['optimizer_kwargs']['lr']
-    
+
     if p['scheduler'] == 'cosine':
         eta_min = lr * (p['scheduler_kwargs']['lr_decay_rate'] ** 3)
         lr = eta_min + (lr - eta_min) * (1 + math.cos(math.pi * epoch / p['epochs'])) / 2
-         
+
     elif p['scheduler'] == 'step':
         steps = np.sum(epoch > np.array(p['scheduler_kwargs']['lr_decay_epochs']))
         if steps > 0:
