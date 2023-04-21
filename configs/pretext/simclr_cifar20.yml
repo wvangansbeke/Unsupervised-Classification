@@ -8,8 +8,8 @@ model_kwargs:
    features_dim: 128
 
 # Dataset
-train_db_name: cifar-20
-val_db_name: cifar-20
+train_db_name: cifar-100-python
+val_db_name: cifar-100-python
 num_classes: 20
 
 # Loss
@@ -18,7 +18,7 @@ criterion_kwargs:
    temperature: 0.1 
 
 # Hyperparameters
-epochs: 500
+epochs: 330 # Edit from 500
 optimizer: sgd
 optimizer_kwargs:
    nesterov: False
@@ -28,7 +28,7 @@ optimizer_kwargs:
 scheduler: cosine
 scheduler_kwargs:
    lr_decay_rate: 0.1
-batch_size: 512 
+batch_size: 512
 num_workers: 8
 
 # Transformations

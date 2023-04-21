@@ -23,6 +23,7 @@ FLAGS.add_argument('--config_exp', help='Location of experiments config file')
 def main():
     args = FLAGS.parse_args()
     p = create_config(args.config_env, args.config_exp)
+
     print(colored(p, 'red'))
 
     # CUDNN

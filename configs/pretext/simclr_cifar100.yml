@@ -8,9 +8,9 @@ model_kwargs:
    features_dim: 128
 
 # Dataset
-train_db_name: cifar-10
-val_db_name: cifar-10
-num_classes: 10
+train_db_name: cifar-100
+val_db_name: cifar-100
+num_classes: 100
 
 # Loss
 criterion: simclr
@@ -18,7 +18,7 @@ criterion_kwargs:
    temperature: 0.1 
 
 # Hyperparameters
-epochs: 330 # Edit from 500
+epochs: 250 # Edit from 500
 optimizer: sgd
 optimizer_kwargs:
    nesterov: False
@@ -47,11 +47,11 @@ augmentation_kwargs:
    random_grayscale: 
       p: 0.2
    normalize:
-      mean: [0.4914, 0.4822, 0.4465]
-      std: [0.2023, 0.1994, 0.2010]
+      mean: [0.5071, 0.4867, 0.4408]
+      std: [0.2675, 0.2565, 0.2761]
 
 transformation_kwargs:
    crop_size: 32
    normalize:
-      mean: [0.4914, 0.4822, 0.4465]
-      std: [0.2023, 0.1994, 0.2010]
+      mean: [0.5071, 0.4867, 0.4408]
+      std: [0.2675, 0.2565, 0.2761]

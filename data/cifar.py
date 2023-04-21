@@ -134,6 +134,10 @@ class CIFAR10(Dataset):
             filename, md5 = fentry[0], fentry[1]
             fpath = os.path.join(root, self.base_folder, filename)
             if not check_integrity(fpath, md5):
+                print('Diller')
+                print(fpath)
+                print(self.base_folder)
+                print(filename)
                 return False
         return True
 
@@ -154,7 +158,7 @@ class CIFAR20(CIFAR10):
     """
     base_folder = 'cifar-100-python'
     url = "https://www.cs.toronto.edu/~kriz/cifar-100-python.tar.gz"
-    filename = "cifar-100-python.tar.gz"
+    filename = "cifar-100.tar.gz"
     tgz_md5 = 'eb9058c3a382ffc7106e4002c42a8d85'
     train_list = [
                     ['train', '16019d7e3df5f24257cddd939b257f8d'],
@@ -168,11 +172,11 @@ class CIFAR20(CIFAR10):
         'key': 'fine_label_names',
         'md5': '7973b15100ade9c7d40fb424638fde48',
     }
-    def __init__(self, root=MyPath.db_root_dir('cifar-20'), train=True, transform=None, 
+    def __init__(self, root=MyPath.db_root_dir('cifar-100-python'), train=True, transform=None,
                     download=False):
         super(CIFAR20, self).__init__(root, train=train,transform=transform,
                                         download=download)
-        # Remap classes from cifar-100 to cifar-20
+        # Remap classes from cifar-100 to cifar-100-python
         new_ = self.targets
         for idx, target in enumerate(self.targets):
             new_[idx] = _cifar100_to_cifar20(target)

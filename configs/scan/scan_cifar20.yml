@@ -14,8 +14,8 @@ num_heads: 1 # Only use one head
 backbone: resnet18
 
 # Dataset
-train_db_name: cifar-20
-val_db_name: cifar-20
+train_db_name: cifar-100-python
+val_db_name: cifar-100-python
 num_classes: 20
 num_neighbors: 20
 

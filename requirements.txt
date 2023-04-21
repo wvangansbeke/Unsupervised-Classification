@@ -116,3 +116,13 @@
     - urllib3==1.25.8
     - wasabi==0.6.0
     - zipp==3.1.0
+
+numpy
+pillow~=9.4.0
+torchvision
+torch
+yaml~=0.2.5
+pyyaml~=6.0
+easydict
+scipy~=1.10.0
+termcolor~=2.1.0

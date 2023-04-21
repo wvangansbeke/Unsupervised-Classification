@@ -32,7 +32,6 @@ def main():
     # Retrieve config file
     p = create_config(args.config_env, args.config_exp)
     print(colored(p, 'red'))
-    
     # Model
     print(colored('Retrieve model', 'blue'))
     model = get_model(p)

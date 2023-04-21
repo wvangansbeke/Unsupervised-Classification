@@ -1,0 +1,11 @@
+# Files to be ignored
+data/__pycache__/
+losses/__pycache__/
+models/__pycache__/
+utils/__pycache__/
+.idea
+
+# Folders to be ignored
+/results
+/dataset
+/dataset - rigtige
