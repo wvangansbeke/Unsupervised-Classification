@@ -3,6 +3,7 @@ Authors: Wouter Van Gansbeke, Simon Vandenhende
 Licensed under the CC BY-NC 4.0 license (https://creativecommons.org/licenses/by-nc/4.0/)
 """
 import argparse
+import csv
 import os
 import torch
 
@@ -15,12 +16,15 @@ from utils.common_config import get_train_transformations, get_val_transformatio
                                 adjust_learning_rate
 from utils.evaluate_utils import get_predictions, scan_evaluate, hungarian_evaluate
 from utils.train_utils import scan_train
+import time
 
 FLAGS = argparse.ArgumentParser(description='SCAN Loss')
 FLAGS.add_argument('--config_env', help='Location of path config file')
 FLAGS.add_argument('--config_exp', help='Location of experiments config file')
 
 def main():
+    start_time = start_timer()
+
     args = FLAGS.parse_args()
     p = create_config(args.config_env, args.config_exp)
 
@@ -135,7 +139,30 @@ def main():
                             class_names=val_dataset.dataset.classes, 
                             compute_confusion_matrix=True, 
                             confusion_matrix_file=os.path.join(p['scan_dir'], 'confusion_matrix.png'))
-    print(clustering_stats)         
+    print(clustering_stats)
+
+    save_time_to_csv(end_timer(start_time, p['train_db_name']), p['train_db_name'], os.path.basename(__file__))
+
+def start_timer():
+    start_time = time.time()
+    print(f'Timer started at: {start_time}')
+    return start_time
+
+def end_timer(start_time, train_db_name):
+    end_time = time.time()
+    print(f'Timer ended at: {end_time}')
+    elapsed_time = end_time - start_time
+    final_time = f'{train_db_name}: {elapsed_time:.2f} seconds'
+    print(f'Time elapsed: {elapsed_time:.2f} seconds')
+    print(f'Final time: {final_time}')
+
+    return elapsed_time
+
+def save_time_to_csv(final_time, db_name, file_name):
+    with open('./results/final_time.csv', 'a', newline='') as file:
+        writer = csv.writer(file)
+        writer.writerow([f'{file_name}: {db_name}: {final_time}'])
+    print('Final time saved to CSV file.')
     
 if __name__ == "__main__":
     main()

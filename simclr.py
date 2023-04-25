@@ -6,7 +6,6 @@ import argparse
 import os
 import torch
 import numpy as np
-
 from utils.config import create_config
 from utils.common_config import get_criterion, get_model, get_train_dataset,\
                                 get_val_dataset, get_train_dataloader,\
@@ -18,6 +17,9 @@ from utils.memory import MemoryBank
 from utils.train_utils import simclr_train
 from utils.utils import fill_memory_bank
 from termcolor import colored
+from scan import save_time_to_csv, end_timer, start_timer
+from time import sleep
+import csv
 
 # Parser
 parser = argparse.ArgumentParser(description='SimCLR')
@@ -28,6 +30,7 @@ parser.add_argument('--config_exp',
 args = parser.parse_args()
 
 def main():
+    start_time = start_timer()
 
     # Retrieve config file
     p = create_config(args.config_env, args.config_exp)
@@ -145,8 +148,9 @@ def main():
     print('Mine the nearest neighbors (Top-%d)' %(topk)) 
     indices, acc = memory_bank_val.mine_nearest_neighbors(topk)
     print('Accuracy of top-%d nearest neighbors on val set is %.2f' %(topk, 100*acc))
-    np.save(p['topk_neighbors_val_path'], indices)   
+    np.save(p['topk_neighbors_val_path'], indices)
 
+    save_time_to_csv(end_timer(start_time, p['train_db_name']), p['train_db_name'], os.path.basename(__file__))
  
 if __name__ == '__main__':
     main()

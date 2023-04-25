@@ -16,6 +16,8 @@ from utils.ema import EMA
 from utils.evaluate_utils import get_predictions, hungarian_evaluate
 from utils.train_utils import selflabel_train
 from termcolor import colored
+from scan import save_time_to_csv, end_timer, start_timer
+from time import sleep
 
 # Parser
 parser = argparse.ArgumentParser(description='Self-labeling')
@@ -26,6 +28,8 @@ parser.add_argument('--config_exp',
 args = parser.parse_args()
 
 def main():
+    start_time = start_timer()
+
     # Retrieve config file
     p = create_config(args.config_env, args.config_exp)
     print(colored(p, 'red'))
@@ -120,6 +124,7 @@ def main():
     print(clustering_stats)
     torch.save(model.module.state_dict(), p['selflabel_model'])
 
+    save_time_to_csv(end_timer(start_time, p['train_db_name']), p['train_db_name'], os.path.basename(__file__))
 
 if __name__ == "__main__":
     main()

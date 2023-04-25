@@ -18,7 +18,7 @@ criterion_kwargs:
    temperature: 0.1 
 
 # Hyperparameters
-epochs: 330 # Edit from 500
+epochs: 100 # Edit from 500
 optimizer: sgd
 optimizer_kwargs:
    nesterov: False
