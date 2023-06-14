@@ -150,7 +150,7 @@ class CIFAR10(Dataset):
 class CIFAR20(CIFAR10):
     """CIFAR20 Dataset.
 
-    This is a subclass of the `CIFAR10` Dataset.
+    This is a subclass of the `CIFAR100` Dataset.
     """
     base_folder = 'cifar-100-python'
     url = "https://www.cs.toronto.edu/~kriz/cifar-100-python.tar.gz"
